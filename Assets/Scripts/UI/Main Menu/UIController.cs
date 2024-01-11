@@ -11,7 +11,7 @@ public class UIController : MonoBehaviour
     // Fonction pour d�marrer le jeu
     public void StartGame()
     {
-        SceneManagement.Inst.Scene_Cinematic();
+        GameManager.Scene_Cinematic();
     }
 
     // Fonction pour montrer les settings
@@ -56,7 +56,7 @@ public class UIController : MonoBehaviour
     // Fonction pour retourner au menu
     public void LaunchMenu()
     {
-        SceneManagement.Inst.Scene_Menu();
+        GameManager.Scene_Menu();
     }
 
     // Fonction pour quitter l'application

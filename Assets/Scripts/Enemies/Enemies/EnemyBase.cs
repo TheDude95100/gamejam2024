@@ -8,6 +8,7 @@ public class EnemyBase : MonoBehaviour
 {
     public int groupID = 0;
     public EnemyData enemyData;
+    public AbilityData[] abilityData;
 
 
     void Start()
