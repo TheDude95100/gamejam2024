@@ -19,6 +19,16 @@ public class EnemyData : ScriptableObject
     [Range(1, 100)]
     public float stoppingDistance = 1;
 
+    [Header("Obstacle Avoidance")]
+    [Range(0, 10)]
+    public float minRandomRadiusAvoidanceRange = 0.5f;
+    [Range(0, 10)]
+    public float maxRandomRadiusAvoidanceRange = 1f;
+
+    public bool targetSurrounding = true;
+
+
+
 
     [Header("Damage")]
     [Range(0, 100)]
@@ -32,9 +42,9 @@ public class EnemyData : ScriptableObject
 
     [Header("Attack / Red Sphere")]
     [Range(1, 100)]
-    public int attackSpeed = 1;
-    [Range(1, 100)]
     public int attackRange = 1;
+    [Range(1, 100)]
+    public int attackCooldown = 1;
 
     [Header("Additional Parameters")]
     bool roaming = false;

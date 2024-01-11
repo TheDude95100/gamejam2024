@@ -8,8 +8,10 @@ using UnityEngine.AI;
 public class MovementModule : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private NavMeshObstacle selfObstacle;
 
     private Transform player;
+    private Vector3 target;
     private Transform roamingPosition; // Roaming position is the position of the agent when it is not chasing the player
 
     private EnemyData enemyData;
@@ -40,6 +42,8 @@ public class MovementModule : MonoBehaviour
         agent.angularSpeed = enemyData.angularSpeed;
         agent.acceleration = enemyData.acceleration;
         agent.stoppingDistance = enemyData.stoppingDistance;
+
+        selfObstacle = GetComponent<NavMeshObstacle>();
     }
 
 
@@ -47,6 +51,12 @@ public class MovementModule : MonoBehaviour
     {
         roamingPosition = transform;
         state = State.Roaming;
+
+        // Random obstacle avoidance
+        //agent.avoidancePriority = Random.Range(0, 100);
+
+        // Random radius avoidance
+        agent.radius = Random.Range(enemyData.minRandomRadiusAvoidanceRange, enemyData.maxRandomRadiusAvoidanceRange);
     }
 
 
@@ -80,14 +90,16 @@ public class MovementModule : MonoBehaviour
         if (distance > Mathf.Pow(enemyData.attackRange, 2))
         {
             Debug.Log("Agent is in range, moving to player : " + groupHasDetectedPlayer);
-            agent.SetDestination(player.position);
+            target = player.position;
+            //agent.SetDestination(player.position);
 
             state = State.Chasing;
         }
         else
         {
             Debug.Log("Agent is in attack range, stopping");
-            agent.SetDestination(transform.position);
+            target = transform.position;
+            //agent.SetDestination(transform.position);
 
             // Face the player
             Vector3 direction = (player.position - transform.position).normalized;
@@ -95,6 +107,47 @@ public class MovementModule : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * enemyData.angularSpeed * 0.1f);
 
             state = State.Attacking;
+        }
+
+        if (!enemyData.targetSurrounding)
+        {
+            agent.SetDestination(target);
+            return;
+        }
+
+        // If target is not reached, update target
+        float distanceX2 = Mathf.Abs(target.x - transform.position.x);
+        float distanceZ2 = Mathf.Abs(target.z - transform.position.z);
+        float distance2 = Mathf.Pow(distanceX2, 2) + Mathf.Pow(distanceZ2, 2);
+
+        if (distance2 > Mathf.Pow(enemyData.stoppingDistance, 2))
+        {
+            selfObstacle.enabled = false;
+
+            // find nearest point on navmesh to move to
+            Vector3 testTarget = target;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(transform.position, out hit, 1.1f, NavMesh.AllAreas))
+                testTarget = hit.position;
+
+            // DEBUG : Draw a cross on the random position
+            Debug.DrawLine(testTarget + Vector3.up * 2, testTarget - Vector3.up * 2, Color.green);
+            Debug.DrawLine(testTarget + Vector3.right * 2, testTarget - Vector3.right * 2, Color.green);
+            Debug.DrawLine(testTarget + Vector3.forward * 2, testTarget - Vector3.forward * 2, Color.green);
+
+            // if the point is further away (blocked), do noting
+            if (Vector3.Distance(transform.position, testTarget) > 1.1f)
+                return;
+
+            if (agent.isOnNavMesh) agent.SetDestination(target);
+
+            agent.enabled = true;
+
+        }
+        else
+        {
+            selfObstacle.enabled = true;
+            agent.enabled = false;
         }
     }
 
@@ -118,6 +171,8 @@ public class MovementModule : MonoBehaviour
         Debug.DrawLine(lastSeen + Vector3.forward * 5, lastSeen - Vector3.forward * 5, Color.red, 2);
 
         Debug.Log("Agent has lost the player, moving to " + lastSeen);
+        selfObstacle.enabled = false;
+        agent.enabled = true;
         agent.SetDestination(lastSeen);
 
         state = State.Chasing;
