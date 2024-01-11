@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 308cf65d2586440439d5afd9838fce8c, type: 3}
-  m_Name: SoldierData
+  m_Name: Runner
   m_EditorClassIdentifier: 
   health: 1
   speed: 3.5
-  angularSpeed: 225
+  angularSpeed: 120
   acceleration: 8
   stoppingDistance: 1
-  minRandomRadiusAvoidanceRange: 0.3
-  maxRandomRadiusAvoidanceRange: 0.3
+  minRandomRadiusAvoidanceRange: 0.5
+  maxRandomRadiusAvoidanceRange: 0.5
   targetSurrounding: 1
-  damage: 1
-  visionRange: 10
-  attackRange: 3
-  attackCooldown: 1
+  damage: 0
+  visionRange: 12
+  attackRange: 0
+  attackCooldown: 0
