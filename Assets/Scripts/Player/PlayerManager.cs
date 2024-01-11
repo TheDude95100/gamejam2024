@@ -23,6 +23,10 @@ public class PlayerManager : MonoBehaviour
     {
         PlayerInputs inputs = inputManager.Inputs;
 
+        if (inputManager.Inputs.Escape.OnDown) {
+            GameManager.ToggleGameState();
+        }
+
         if (GameManager.gameState == GameState.Pause) {
             inputs = new PlayerInputs();
         }
@@ -33,9 +37,6 @@ public class PlayerManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (inputManager.Inputs.Escape.FixedOnDown) {
-            GameManager.ToggleGameState();
-        }
     }
 
 }
