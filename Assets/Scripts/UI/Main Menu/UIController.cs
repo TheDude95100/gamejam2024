@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
@@ -7,10 +8,18 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject canvasPause;
     [SerializeField] private GameObject canvasSettings;
     [SerializeField] private GameObject canvasEaster;
+    [SerializeField] private AudioSource audioSource;
 
-    // Fonction pour d�marrer le jeu
+
     public void StartGame()
     {
+        StartCoroutine(StartGameCoroutine());
+    }
+
+    private IEnumerator StartGameCoroutine()
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length); 
         GameManager.Scene_Cinematic();
     }
 
