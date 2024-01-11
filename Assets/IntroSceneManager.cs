@@ -31,6 +31,7 @@ public class IntroSceneManager : MonoBehaviour
     public void Start()
     {
         SkullMat.SetFloat("_Speed", 1f);
+        JergalAnimator.SetBool("OpenMouth", false);
         Intro();
     }
 
