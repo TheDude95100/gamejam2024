@@ -3,6 +3,7 @@ using UnityEngine;
 public class ActionController : MonoBehaviour
 {
     private PlayerInputs inputs;
+    [SerializeField] private AudioSource whirlwindSound;
 
     private void Update()
     {
@@ -15,12 +16,18 @@ public class ActionController : MonoBehaviour
             Debug.Log("HeavyStrike");
         }
         if (inputs.Action3.OnDown)
-        {
+        {   
+            whirlwindSound.Play();
             Debug.Log("Whirlwind");
         }
         if (inputs.Action4.OnDown)
         {
             Debug.Log("Conversion");
+        }
+        if (inputs.Action3.OnUp)
+        {   
+            whirlwindSound.Stop();
+            Debug.Log("Whirlwind");
         }
     }
 
