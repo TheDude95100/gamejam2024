@@ -116,7 +116,11 @@ public class MovementModule : MonoBehaviour
         }
 
         // If target is not reached, update target
-        if (Vector3.Distance(transform.position, target) > 0.1f)
+        float distanceX2 = Mathf.Abs(target.x - transform.position.x);
+        float distanceZ2 = Mathf.Abs(target.z - transform.position.z);
+        float distance2 = Mathf.Pow(distanceX2, 2) + Mathf.Pow(distanceZ2, 2);
+
+        if (distance2 > Mathf.Pow(enemyData.stoppingDistance, 2))
         {
             selfObstacle.enabled = false;
 

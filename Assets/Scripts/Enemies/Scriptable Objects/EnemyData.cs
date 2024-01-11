@@ -42,9 +42,9 @@ public class EnemyData : ScriptableObject
 
     [Header("Attack / Red Sphere")]
     [Range(1, 100)]
-    public int attackSpeed = 1;
-    [Range(1, 100)]
     public int attackRange = 1;
+    [Range(1, 100)]
+    public int attackCooldown = 1;
 
     [Header("Additional Parameters")]
     bool roaming = false;
