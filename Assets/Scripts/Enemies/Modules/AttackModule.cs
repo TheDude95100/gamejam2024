@@ -7,19 +7,26 @@ public class AttackModule : MonoBehaviour
 {
     private Transform player;
     private float timer;
-    private EnemyData enemyData;
+    private AbilityData[] abilityData;
+    private AbilityData currentAbility;
 
-    public enum Attacks
+    private enum State
     {
-        Attack1,
+        Idle,
+        Casting,
+        Attacking,
+        Cooldown
     }
+    private State state;
+    private State previousState;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         timer = 0f;
 
-        enemyData = GetComponent<EnemyBase>().enemyData;
+        abilityData = GetComponent<EnemyBase>().abilityData;
+        state = State.Idle;
     }
 
 
@@ -27,9 +34,48 @@ public class AttackModule : MonoBehaviour
     {
         // TODO If player is not dead return
 
-        // if timer is not 0, increment it
+        ChooseRandomAbility();
+
         timer -= Time.deltaTime;
-        if (timer != 0f)
+        if (timer > currentAbility.Cooldown + currentAbility.Duration)
+        {
+            state = State.Casting;
+        }
+        else if (timer > currentAbility.Duration)
+        {
+            state = State.Attacking;
+        }
+        else if (timer > 0f)
+        {
+            state = State.Cooldown;
+        }
+        else
+        {
+            state = State.Idle;
+        }
+
+        if (state != previousState)
+        {
+            switch (state)
+            {
+                case State.Idle:
+                    Idle();
+                    break;
+                case State.Casting:
+                    Caste();
+                    break;
+                case State.Attacking:
+                    Attack();
+                    break;
+                case State.Cooldown:
+                    Cooldown();
+                    break;
+            }
+        }
+
+        previousState = state;
+
+        if (state != State.Idle)
         {
             return;
         }
@@ -39,14 +85,35 @@ public class AttackModule : MonoBehaviour
         float distanceZ = Mathf.Abs(player.position.z - transform.position.z);
         float distance = Mathf.Sqrt(Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceZ, 2));
 
-        if (distance <= enemyData.attackCooldown)
+        if (distance <= currentAbility.AttackRange)
         {
-            Attack(Attacks.Attack1);
-            timer = enemyData.attackCooldown;
+            timer = currentAbility.Cooldown + currentAbility.Duration + currentAbility.CastingTime;
         }
     }
 
-    void Attack(Attacks attack)
+    void Idle()
     {
+        // TODO do stuff here
+    }
+
+    void Caste()
+    {
+        // TODO do stuff here
+    }
+
+    void Attack()
+    {
+        // TODO do stuff here
+    }
+
+    void Cooldown()
+    {
+        // TODO do stuff here
+    }
+
+    void ChooseRandomAbility()
+    {
+        int randomIndex = Random.Range(0, abilityData.Length);
+        currentAbility = abilityData[randomIndex];
     }
 }
