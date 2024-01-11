@@ -9,14 +9,13 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Animator animator;
-    private void Start()
-    {
-        phrases = new Queue<string>();
-    }
 
+    public bool flag;
     public void StartDialogue(Dialogue dialogue)
     {
-
+        flag = false;
+        phrases = new Queue<string>();
+        animator.SetBool("IsDialogueFinished", false);
         nameText.text = dialogue.nom;
 
         phrases.Clear();
@@ -38,7 +37,7 @@ public class DialogueManager : MonoBehaviour
             return;
         } 
        string phrase = phrases.Dequeue();
-        StopAllCoroutines();
+       StopAllCoroutines();
        StartCoroutine(TypeSentence(phrase));
     }
     IEnumerator TypeSentence(string phrase)
@@ -53,5 +52,7 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         animator.SetBool("IsDialogueFinished",true);
+        flag = true;
     }
+
 }
