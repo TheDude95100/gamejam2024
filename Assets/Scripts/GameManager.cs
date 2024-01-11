@@ -33,17 +33,21 @@ public class GameManager : MonoBehaviour
         } else {
             gameState = GameState.Normal;
         }
-
     }
+
+    public static int nextLevel = 1;
 
     public static void Scene_Menu() {
         SceneManager.LoadScene("MenuPricipal");
     }
+    public static void Scene_FakeLoad() {
+        SceneManager.LoadScene("FakeLoading");
+    }
     public static void Scene_Cinematic() {
         SceneManager.LoadScene("Cinematic");
     }
-    public static void Scene_Level1() {
-        SceneManager.LoadScene("Level1");
+    public static void Scene_Level() {
+        SceneManager.LoadScene($"Level{nextLevel}");
     }
 
 }

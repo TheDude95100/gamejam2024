@@ -60,6 +60,8 @@ public class InputManager : MonoBehaviour
         _inventory = _playerActions.Player.Inventory;
 
         _escape = _playerActions.Player.Escape;
+
+        UpdateData();
     }
 
     public void UpdateData()

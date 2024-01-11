@@ -18,6 +18,7 @@ public class AttackModule : MonoBehaviour
         Cooldown
     }
     private State state;
+    private State previousState;
 
     void Start()
     {
@@ -32,6 +33,8 @@ public class AttackModule : MonoBehaviour
     void Update()
     {
         // TODO If player is not dead return
+
+        ChooseRandomAbility();
 
         timer -= Time.deltaTime;
         if (timer > currentAbility.Cooldown + currentAbility.Duration)
@@ -51,6 +54,27 @@ public class AttackModule : MonoBehaviour
             state = State.Idle;
         }
 
+        if (state != previousState)
+        {
+            switch (state)
+            {
+                case State.Idle:
+                    Idle();
+                    break;
+                case State.Casting:
+                    Caste();
+                    break;
+                case State.Attacking:
+                    Attack();
+                    break;
+                case State.Cooldown:
+                    Cooldown();
+                    break;
+            }
+        }
+
+        previousState = state;
+
         if (state != State.Idle)
         {
             return;
@@ -61,14 +85,28 @@ public class AttackModule : MonoBehaviour
         float distanceZ = Mathf.Abs(player.position.z - transform.position.z);
         float distance = Mathf.Sqrt(Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceZ, 2));
 
-        ChooseRandomAbility();
         if (distance <= currentAbility.AttackRange)
         {
             timer = currentAbility.Cooldown + currentAbility.Duration + currentAbility.CastingTime;
         }
     }
 
+    void Idle()
+    {
+        // TODO do stuff here
+    }
+
+    void Caste()
+    {
+        // TODO do stuff here
+    }
+
     void Attack()
+    {
+        // TODO do stuff here
+    }
+
+    void Cooldown()
     {
         // TODO do stuff here
     }

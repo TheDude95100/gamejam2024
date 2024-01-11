@@ -70,7 +70,7 @@ public class IntroSceneManager : MonoBehaviour
         {
             JergalAnimator.SetBool("OpenMouth", false);
             // SceneManager do the thing
-            GameManager.Scene_Level1();
+            GameManager.Scene_FakeLoad();
         }
     }
 
