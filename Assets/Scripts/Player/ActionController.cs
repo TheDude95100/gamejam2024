@@ -30,22 +30,11 @@ public class ActionController : MonoBehaviour
             conversionSound.Play();
             Debug.Log("Conversion");
         }
-        if (inputs.Action1.OnUp)
-        {
-            basicAttackSound.Stop();
-        }
-        if (inputs.Action2.OnUp)
-        {
-            heavyAttackSound.Stop();
-        }
         if (inputs.Action3.OnUp)
         {   
             whirlwindSound.Stop();
         }
-        if (inputs.Action4.OnUp)
-        {   
-            conversionSound.Stop();
-        }
+
     }
 
     public void UpdateInputs(PlayerInputs inputs)
