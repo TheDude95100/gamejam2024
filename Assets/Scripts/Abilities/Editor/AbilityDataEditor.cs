@@ -26,8 +26,9 @@ public class AbilityDataEditor : Editor
     public SerializedProperty bonusDamage;
     public SerializedProperty bonusDefense;
     public SerializedProperty bonusAttackSpeed;
+    public SerializedProperty bonusDuration;
     public SerializedProperty bonusMovementSpeed;
-    public SerializedProperty bonusExperience;
+    public SerializedProperty bonusExperienceGain;
 
     private void OnEnable()
     {
@@ -50,8 +51,9 @@ public class AbilityDataEditor : Editor
         bonusDamage = serializedObject.FindProperty("bonusDamage");
         bonusDefense = serializedObject.FindProperty("bonusDefense");
         bonusAttackSpeed = serializedObject.FindProperty("bonusAttackSpeed");
+        bonusDuration = serializedObject.FindProperty("bonusDuration");
         bonusMovementSpeed = serializedObject.FindProperty("bonusMovementSpeed");
-        bonusExperience = serializedObject.FindProperty("bonusExperience");
+        bonusExperienceGain = serializedObject.FindProperty("bonusExperienceGain");
     }
 
     public override void OnInspectorGUI()
@@ -103,8 +105,9 @@ public class AbilityDataEditor : Editor
             EditorGUILayout.PropertyField(bonusDamage, new GUIContent("Bonus damage"));
             EditorGUILayout.PropertyField(bonusDefense, new GUIContent("Bonus defense"));
             EditorGUILayout.PropertyField(bonusAttackSpeed, new GUIContent("Bonus attack speed"));
+            EditorGUILayout.PropertyField(bonusDuration, new GUIContent("Bonus duration"));
             EditorGUILayout.PropertyField(bonusMovementSpeed, new GUIContent("Bonus movement speed"));
-            EditorGUILayout.PropertyField(bonusExperience, new GUIContent("Bonus experience"));
+            EditorGUILayout.PropertyField(bonusExperienceGain, new GUIContent("Bonus experience"));
 
             EditorGUI.indentLevel--;
         }

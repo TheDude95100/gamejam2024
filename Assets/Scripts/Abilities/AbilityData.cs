@@ -49,14 +49,17 @@ public class AbilityData : ScriptableObject
     [Range(0f, 100f)]
     private float bonusDefense = 3f;
     [SerializeField]
-    [Range(0f, 100f)]
-    private float bonusAttackSpeed = 3f;
+    [Range(0f, 1f)]
+    private float bonusAttackSpeed = 0.25f;
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float bonusDuration = 0.25f;
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float bonusMovementSpeed = 0.25f;
     [SerializeField]
     [Range(0f, 100f)]
-    private float bonusMovementSpeed = 3f;
-    [SerializeField]
-    [Range(0f, 100f)]
-    private float bonusExperience = 3f;
+    private int bonusExperienceGain = 3;
 
     public string AbilityName => abilityName; 
     public string Description => description;
@@ -76,6 +79,7 @@ public class AbilityData : ScriptableObject
     public float BonusDamage => bonusDamage;
     public float BonusDefense => bonusDefense;
     public float BonusAttackSpeed => bonusAttackSpeed;
+    public float BonusDuration => bonusDuration;
     public float BonusMovementSpeed => bonusMovementSpeed;
-    public float BonusExperience => bonusExperience;
+    public int BonusExperienceGain => bonusExperienceGain;
 }
