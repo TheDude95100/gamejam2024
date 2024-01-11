@@ -41,7 +41,7 @@ public class EnemiesManager : MonoBehaviour
         {
             if (enemy.groupID == groupID)
             {
-                enemy.GetComponent<MovementModule>().groupHasDetectedPlayer = true;
+                enemy.GetComponent<MovementModule>().PlayerDetected();
             }
         }
     }
@@ -67,7 +67,6 @@ public class EnemiesManager : MonoBehaviour
         
         foreach (EnemyBase enemy in enemiesGroup)
         {
-            enemy.GetComponent<MovementModule>().groupHasDetectedPlayer = false;
             enemy.GetComponent<MovementModule>().GroupHasLostPlayer();
         }
     }

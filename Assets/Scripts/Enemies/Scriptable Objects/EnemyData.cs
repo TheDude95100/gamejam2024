@@ -10,16 +10,12 @@ public class EnemyData : ScriptableObject
 
 
     [Header("Steering")]
-
     [Range(1, 100)]
     public float speed = 3.5f;
-
     [Range(1, 400)]
     public float angularSpeed = 120;
-
     [Range(1, 100)]
     public float acceleration = 8;
-
     [Range(1, 100)]
     public float stoppingDistance = 1;
 
@@ -35,10 +31,11 @@ public class EnemyData : ScriptableObject
 
 
     [Header("Attack / Red Sphere")]
-
     [Range(1, 100)]
     public int attackSpeed = 1;
-
     [Range(1, 100)]
     public int attackRange = 1;
+
+    [Header("Additional Parameters")]
+    bool roaming = false;
 }
