@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f5b9f09d475593b46a4f59f2eef5b71b
+guid: 39d5c98454148f740b3a03281288aab9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: big_slam_anim
+      name: death_anim
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 0
-      lastFrame: 102
+      lastFrame: 144
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

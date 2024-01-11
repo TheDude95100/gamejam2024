@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1cf16cdc149cbe741951c56d5bbd89e6
+guid: 0c5d7bce2515b07429dd31a67ce1dd23
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: death_anim
+      name: spin_middle_anim
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 0
-      lastFrame: 144
+      firstFrame: 1
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
