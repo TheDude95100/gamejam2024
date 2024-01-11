@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemiesManager : MonoBehaviour
 {
@@ -67,6 +68,7 @@ public class EnemiesManager : MonoBehaviour
         foreach (EnemyBase enemy in enemiesGroup)
         {
             enemy.GetComponent<MovementModule>().groupHasDetectedPlayer = false;
+            enemy.GetComponent<MovementModule>().GroupHasLostPlayer();
         }
     }
 }
