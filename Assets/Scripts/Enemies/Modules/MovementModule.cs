@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 [RequireComponent(typeof(EnemyBase))]
 public class MovementModule : MonoBehaviour
@@ -12,10 +13,9 @@ public class MovementModule : MonoBehaviour
 
     private Transform player;
     private Vector3 target;
-    private Transform roamingPosition; // Roaming position is the position of the agent when it is not chasing the player
-
     private EnemyData enemyData;
     private EnemyBase enemyBase;
+    private AbilityData abilityData;
 
     private bool playerDetected = false;
     private bool lostPlayer = true;
@@ -23,19 +23,30 @@ public class MovementModule : MonoBehaviour
 
     private bool invoked = false;
 
+    public bool locked = false;
+
     private enum State
     {
-        Roaming,
-        Chasing,
+        Idle,
+        Moving,
         Attacking
     }
-    private State state;
+    private State state = State.Idle;
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
         enemyBase = GetComponent<EnemyBase>();
         enemyData = enemyBase.enemyData;
+
+        try { 
+            abilityData = enemyBase.abilityData[0]; 
+        }
+        catch {
+            Debug.LogError("Enemy " + gameObject.name + " has no abilityData[0]");
+            // Create the default abilityData
+            abilityData = new AbilityData();
+        }
 
         agent = GetComponent<NavMeshAgent>();
         agent.speed = enemyData.speed;
@@ -44,16 +55,17 @@ public class MovementModule : MonoBehaviour
         agent.stoppingDistance = enemyData.stoppingDistance;
 
         selfObstacle = GetComponent<NavMeshObstacle>();
+        if (selfObstacle == null && enemyData.damage > 1 && enemyData.targetSurrounding)
+        {
+            Debug.LogError("Enemy " + gameObject.name + " has no NavMeshObstacle component despite having damage > 0 and targetSurrounding = true");
+        }
     }
 
 
     void Start()
     {
-        roamingPosition = transform;
-        state = State.Roaming;
-
         // Random obstacle avoidance
-        //agent.avoidancePriority = Random.Range(0, 100);
+        //agent.avoidancePriority = Random.Range(0, 100); // This is worst
 
         // Random radius avoidance
         agent.radius = Random.Range(enemyData.minRandomRadiusAvoidanceRange, enemyData.maxRandomRadiusAvoidanceRange);
@@ -62,6 +74,8 @@ public class MovementModule : MonoBehaviour
 
     void Update()
     {
+        if (locked) return;
+
         float distanceX = Mathf.Abs(player.position.x - transform.position.x);
         float distanceZ = Mathf.Abs(player.position.z - transform.position.z);
         float distance = Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceZ, 2);
@@ -73,7 +87,7 @@ public class MovementModule : MonoBehaviour
 
             lostPlayer = false;
         }
-        else if (distance > Mathf.Pow(enemyData.visionRange + enemyData.attackRange, 2))
+        else if (distance > Mathf.Pow(enemyData.visionRange + abilityData.AttackRange, 2))
         {
             playerDetected = false;
 
@@ -86,20 +100,90 @@ public class MovementModule : MonoBehaviour
 
         if (!groupHasDetectedPlayer) return; // Player detected area
 
+        if (enemyData.damage > 0)
+        {
+            HostileMovement();
+        }
+        else
+        {
+            PassiveMovement();
+        }
+    }
+
+
+    public bool HasLostPlayer()
+    {
+        return lostPlayer;
+    }
+
+    internal void GroupHasLostPlayer()
+    {
+        Debug.Log("Group has lost the player");
+        groupHasDetectedPlayer = false;
+        CancelInvoke();
+        invoked = false;
+
+        // Random point in a circle around the last known position
+        Vector3 lastSeen = RandomNavSphere(player.position, enemyData.visionRange);
+
+        // DEBUG : Draw a cross on the random position
+        Debug.DrawLine(lastSeen + Vector3.up * 5, lastSeen - Vector3.up * 5, Color.red, 2);
+        Debug.DrawLine(lastSeen + Vector3.right * 5, lastSeen - Vector3.right * 5, Color.red, 2);
+        Debug.DrawLine(lastSeen + Vector3.forward * 5, lastSeen - Vector3.forward * 5, Color.red, 2);
+
+        Debug.Log("Agent has lost the player, moving to " + lastSeen);
+
+        if (selfObstacle != null) selfObstacle.enabled = false;
+
+        agent.enabled = true;
+
+        if (enemyData.damage > 0) agent.SetDestination(lastSeen);
+
+        state = State.Moving;
+    }
+
+    Vector3 RandomNavSphere(Vector3 origin, float distance)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * distance;
+        randomDirection += origin;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, distance, 1);
+        return hit.position;
+    }
+
+    internal void PlayerDetected()
+    {
+        float randomTime = Random.Range(0.1f, 1f);
+        if (invoked) return;
+        Invoke("SetGroupDetected", randomTime);
+        invoked = true;
+    }
+
+    internal void SetGroupDetected()
+    {
+        Debug.Log("group has detected the player");
+        groupHasDetectedPlayer = true;
+        invoked = false;
+    }
+
+    private void HostileMovement()
+    {
+        float distanceX = Mathf.Abs(player.position.x - transform.position.x);
+        float distanceZ = Mathf.Abs(player.position.z - transform.position.z);
+        float distance = Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceZ, 2);
+
         // Stop moving if player is in attack range
-        if (distance > Mathf.Pow(enemyData.attackRange, 2))
+        if (distance > Mathf.Pow(abilityData.AttackRange, 2))
         {
             Debug.Log("Agent is in range, moving to player : " + groupHasDetectedPlayer);
             target = player.position;
-            //agent.SetDestination(player.position);
 
-            state = State.Chasing;
+            state = State.Moving;
         }
         else
         {
             Debug.Log("Agent is in attack range, stopping");
             target = transform.position;
-            //agent.SetDestination(transform.position);
 
             // Face the player
             Vector3 direction = (player.position - transform.position).normalized;
@@ -151,63 +235,51 @@ public class MovementModule : MonoBehaviour
         }
     }
 
-
-    public bool HasLostPlayer()
+    private void PassiveMovement()
     {
-        return lostPlayer;
-    }
+        state = State.Moving;
 
-    internal void GroupHasLostPlayer()
-    {
-        Debug.Log("Group has lost the player");
-        groupHasDetectedPlayer = false;
+        // Calculate the direction away from the player
+        Vector3 fleeDirection = transform.position - player.transform.position;
+        fleeDirection.Normalize(); // Normalize the vector to get only the direction
 
-        // Random point in a circle around the last known position
-        Vector3 lastSeen = RandomNavSphere(player.position, enemyData.visionRange);
+        // Set the distance multiplier (1.5 times the vision range)
+        float fleeDistanceMultiplier = 1.5f;
 
-        // DEBUG : Draw a cross on the random position
-        Debug.DrawLine(lastSeen + Vector3.up * 5, lastSeen - Vector3.up * 5, Color.red, 2);
-        Debug.DrawLine(lastSeen + Vector3.right * 5, lastSeen - Vector3.right * 5, Color.red, 2);
-        Debug.DrawLine(lastSeen + Vector3.forward * 5, lastSeen - Vector3.forward * 5, Color.red, 2);
+        // Calculate the distance based on the vision range
+        float fleeDistance = enemyData.visionRange * fleeDistanceMultiplier;
 
-        Debug.Log("Agent has lost the player, moving to " + lastSeen);
-        selfObstacle.enabled = false;
-        agent.enabled = true;
-        agent.SetDestination(lastSeen);
+        // Set the frequency of the zigzag movement
+        float zigzagFrequency = 2f; // Adjust this value to control the frequency
 
-        state = State.Chasing;
-    }
+        // Calculate the offset using sine function to create zigzag movement
+        float zigzagOffset = Mathf.Sin(Time.time * zigzagFrequency);
 
-    Vector3 RandomNavSphere(Vector3 origin, float distance)
-    {
-        Vector3 randomDirection = Random.insideUnitSphere * distance;
-        randomDirection += origin;
+        // Apply the offset to the direction to create zigzag movement
+        Vector3 zigzagDirection = fleeDirection + new Vector3(zigzagOffset, 0f, 0f);
+
+        // Normalize the zigzag direction
+        zigzagDirection.Normalize();
+
+        // Set the destination for the NavMeshAgent to a random position with zigzag movement
+        Vector3 targetPosition = transform.position + zigzagDirection * fleeDistance;
+
+        // Sample the position to find a point on the NavMesh
         NavMeshHit hit;
-        NavMesh.SamplePosition(randomDirection, out hit, distance, 1);
-        return hit.position;
-    }
-
-    internal void PlayerDetected()
-    {
-        float randomTime = Random.Range(0.1f, 1f);
-        if (invoked) return;
-        Invoke("SetGroupDetected", randomTime);
-        invoked = true;
-    }
-
-    internal void SetGroupDetected()
-    {
-        groupHasDetectedPlayer = true;
-        invoked = false;
+        if (NavMesh.SamplePosition(targetPosition, out hit, 10f, NavMesh.AllAreas))
+        {
+            // Set the destination for the NavMeshAgent to the calculated position
+            agent.SetDestination(hit.position);
+        }
     }
 
     private void OnDrawGizmos()
     {
-        if (state == State.Roaming)
+        if (state == State.Idle)
         {
             Gizmos.color = Color.green;
         }
-        else if (state == State.Chasing)
+        else if (state == State.Moving)
         {
             Gizmos.color = Color.yellow;
         }

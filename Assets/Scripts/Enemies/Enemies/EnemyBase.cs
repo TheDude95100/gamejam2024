@@ -9,11 +9,18 @@ public class EnemyBase : MonoBehaviour
     public int groupID = 0;
     public EnemyData enemyData;
     public AbilityData[] abilityData;
+    public int abilityIndexVisualizer = 0;
 
 
     void Start()
     {
         EnemiesManager.Instance.AddEnemy(this);
+
+        if (groupID == -1)
+        {
+            int randomGroupID = Random.Range(100, 10000000);
+            groupID = randomGroupID; // good enough
+        }
     }
 
 
@@ -25,6 +32,7 @@ public class EnemyBase : MonoBehaviour
     void Die()
     {
         EnemiesManager.Instance.KillEnemy(this);
+        // TODO do cool stuff here
     }
 
     private void OnDrawGizmosSelected()
@@ -32,7 +40,8 @@ public class EnemyBase : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, enemyData.visionRange);
 
+        if (abilityData.Length == 0 || abilityIndexVisualizer >= abilityData.Length) return;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, enemyData.attackRange);
+        Gizmos.DrawWireSphere(transform.position, abilityData[abilityIndexVisualizer].AttackRange);
     }
 }
