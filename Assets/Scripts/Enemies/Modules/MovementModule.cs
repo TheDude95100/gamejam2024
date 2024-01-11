@@ -16,10 +16,18 @@ public class MovementModule : MonoBehaviour
     private bool lostPlayer = true;
     public bool groupHasDetectedPlayer = false;
 
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = (float)enemyData.speed;
+        agent.angularSpeed = (float)enemyData.angularSpeed;
+        agent.acceleration = (float)enemyData.acceleration;
+        agent.stoppingDistance = (float)enemyData.stoppingDistance;
+    }
+
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player").transform;
         enemyBase = GetComponent<EnemyBase>();
         enemyData = enemyBase.enemyData;
@@ -55,7 +63,7 @@ public class MovementModule : MonoBehaviour
         // Stop moving if player is in attack range
         if (distance > Mathf.Pow(enemyData.attackRange, 2))
         {
-            Debug.Log("Agent is in range, moving to player");
+            //Debug.Log("Agent is in range, moving to player");
             agent.SetDestination(player.position);
         }
         else
