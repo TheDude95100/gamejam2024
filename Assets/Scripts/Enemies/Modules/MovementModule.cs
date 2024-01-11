@@ -47,6 +47,12 @@ public class MovementModule : MonoBehaviour
     {
         roamingPosition = transform;
         state = State.Roaming;
+
+        // Random obstacle avoidance
+        agent.avoidancePriority = Random.Range(0, 100);
+
+        // Random radius avoidance
+        agent.radius = Random.Range(enemyData.minRandomRadiusAvoidanceRange, enemyData.maxRandomRadiusAvoidanceRange);
     }
 
 

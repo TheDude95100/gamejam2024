@@ -19,6 +19,14 @@ public class EnemyData : ScriptableObject
     [Range(1, 100)]
     public float stoppingDistance = 1;
 
+    [Header("Obstacle Avoidance")]
+    [Range(0, 10)]
+    public float minRandomRadiusAvoidanceRange = 0.5f;
+    [Range(0, 10)]
+    public float maxRandomRadiusAvoidanceRange = 1f;
+
+
+
 
     [Header("Damage")]
     [Range(0, 100)]
