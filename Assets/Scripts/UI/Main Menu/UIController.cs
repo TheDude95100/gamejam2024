@@ -19,8 +19,8 @@ public class UIController : MonoBehaviour
     private IEnumerator StartGameCoroutine()
     {
         audioSource.Play();
-        yield return new WaitForSeconds(audioSource.clip.length); 
-        GameManager.Scene_Cinematic();
+        yield return new WaitForSeconds(audioSource.clip.length);
+        GameManager.Scene_FakeLoad();
     }
 
     // Fonction pour montrer les settings
