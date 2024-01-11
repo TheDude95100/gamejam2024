@@ -5,9 +5,9 @@ public class MovementController : MonoBehaviour
 {
 
     [Header("MOVEMENT")]
-    [SerializeField] private float moveSpeed = 20f;
+    [SerializeField] private float moveSpeed = 8f;
     [SerializeField] private float acceleration = 6f;
-    [SerializeField] private float decceleration = 6f;
+    [SerializeField] private float decceleration = 7f;
     [SerializeField] private float velPower = 1.2f;
     [SerializeField] private float friction = 0.7f;
 
@@ -30,10 +30,8 @@ public class MovementController : MonoBehaviour
     private Rigidbody rb;
     private PlayerInputs inputs;
 
-    private bool hasControl;
     private bool grounded;
     private bool facingRight;
-    private float gravityScale;
 
     #region Public
 
@@ -55,7 +53,6 @@ public class MovementController : MonoBehaviour
     int fixedUpdateCount = 0;
     private void Update()
     {
-
         IsGrounded();
         // Debug.Log(_grounded);
         if (inputs.Jump.OnDown)
@@ -68,10 +65,11 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         fixedUpdateCount++;
-        // Debug.Log(_frameInput.Movement2d.Live);
+        // Debug.Log(inputs.Movement2d.Live);
+
         if (DisabledControls) return;
         Horizontal();
-        Jump();
+        // Jump();
         GravityModifier();
     }
 
@@ -82,6 +80,7 @@ public class MovementController : MonoBehaviour
     private void IsGrounded()
     {
         bool groundedLive = Physics.Raycast(transform.position, Vector3.down, distanceAvecLeSol, groundLayerMask);
+        Debug.DrawRay(transform.position, new Vector3(0,-distanceAvecLeSol,0));
         if (!groundedLive && grounded)
         {
             frameLeftGround = fixedUpdateCount;
@@ -94,43 +93,30 @@ public class MovementController : MonoBehaviour
         grounded = groundedLive;
     }
 
-    private float axisZ(){
+    private Vector2 Move_XZ(Vector2 input){
 
-        // calculate wanted direction and desired velocity
-        float targetSpeed = (inputs.Movement2d.Live.y == 0 ? 0 : MathF.Sign(inputs.Movement2d.Live.y)) * moveSpeed;
-        // calculate difference between current volocity and target velocity
-        float vel = rb.velocity.z;
-        float speedDif = targetSpeed - vel;
-        // change acceleration rate depending on situations;
-        float accelRate = Mathf.Abs(targetSpeed) > 0.01f ? acceleration : decceleration;
-        // applies acceleration to speed difference, raise to a set power so acceleration increase with higher speed
-        // multiply by sign to reapply direction
-        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+        input.Normalize();
+        Vector3 currentVelocity_XYZ = rb.velocity;
 
-        // apply the movement force
-        return movement;
-    }
+        Vector2 targetVelocity_XZ   = input * moveSpeed;
+        Vector2 currentVelocity_XZ  = new Vector2(currentVelocity_XYZ.x, currentVelocity_XYZ.z);
 
-    private float axisX()
-    {
-        // calculate wanted direction and desired velocity
-        float targetSpeed = (inputs.Movement2d.Live.x == 0 ? 0 : MathF.Sign(inputs.Movement2d.Live.x)) * moveSpeed;
-        // calculate difference between current volocity and target velocity
-        float vel = rb.velocity.x;
-        float speedDif = targetSpeed - vel;
-        // change acceleration rate depending on situations;
-        float accelRate = Mathf.Abs(targetSpeed) > 0.01f ? acceleration : decceleration;
-        // applies acceleration to speed difference, raise to a set power so acceleration increase with higher speed
-        // multiply by sign to reapply direction
-        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+        Vector2 velocityDiff = targetVelocity_XZ - currentVelocity_XZ;
+        float accelerationRate = velocityDiff.magnitude > 0.001f ? acceleration : decceleration;
 
-        // apply the movement force
-        return movement;
+        float move_X = MathF.Pow(MathF.Abs(velocityDiff.x) * accelerationRate, velPower) * MathF.Sign(velocityDiff.x);
+        float move_Z = MathF.Pow(MathF.Abs(velocityDiff.y) * accelerationRate, velPower) * MathF.Sign(velocityDiff.y);
+
+        return new Vector2(move_X, move_Z);
     }
 
     private void Horizontal(){
-        rb.AddForce(new Vector3(axisX(), 0, axisZ()));
-        Debug.Log(rb.velocity);
+
+        Vector2 movement = Move_XZ(inputs.Movement2d.Live);
+
+        rb.AddForce(new Vector3(movement.x, 0, movement.y));
+
+        // Debug.Log(rb.velocity);
     }
 
     // private void HorizontalTransform
