@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class IntroSceneManager : MonoBehaviour
@@ -66,6 +67,7 @@ public class IntroSceneManager : MonoBehaviour
         if (!JergalDialFlag && dm.flag)
         {
             JergalAnimator.SetBool("OpenMouth", false);
+            SceneManagement.Inst.Scene_Level1();
             // SceneManager do the thing
         }
     }

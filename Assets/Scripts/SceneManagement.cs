@@ -3,6 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagement : MonoBehaviour
 {
+
+    private static SceneManagement _inst = null;
+    public static SceneManagement Inst {
+        get {
+            if (_inst == null) {
+                _inst = new GameObject("SceneManagement").AddComponent<SceneManagement>();
+            }
+            return _inst;
+        }
+    }
+
     private void OnEnable() {
         DontDestroyOnLoad(this);
     }
@@ -12,13 +23,15 @@ public class SceneManagement : MonoBehaviour
     private void Update() {
 
     }
-    private void Scene_Menu() {
-        SceneManager.LoadScene("");
+    public void Scene_Menu() {
+        SceneManager.LoadScene("MenuPricipal");
     }
-    private void Scene_Cinematique() {
+    public void Scene_Cinematic() {
+        SceneManager.LoadScene("Cinematic");
 
     }
-    private void Scene_Niveau1() {
+    public void Scene_Level1() {
+        SceneManager.LoadScene("Level1");
 
     }
 }

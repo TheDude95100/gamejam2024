@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Gamejam2024.sln"
+    "dotnet.defaultSolution": "unity-gamejam2024.sln"
 }

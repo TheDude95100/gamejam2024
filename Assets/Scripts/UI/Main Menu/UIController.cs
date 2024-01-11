@@ -3,18 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    private int indexGameScene = 0;
-    private int indexMenuScene = 1;
-
     [SerializeField] private GameObject canvasMenu;
     [SerializeField] private GameObject canvasPause;
     [SerializeField] private GameObject canvasSettings;
     [SerializeField] private GameObject canvasEaster;
 
-    // Fonction pour démarrer le jeu
+    // Fonction pour dï¿½marrer le jeu
     public void StartGame()
     {
-        SceneManager.LoadScene(indexGameScene);
+        SceneManagement.Inst.Scene_Cinematic();
     }
 
     // Fonction pour montrer les settings
@@ -59,13 +56,16 @@ public class UIController : MonoBehaviour
     // Fonction pour retourner au menu
     public void LaunchMenu()
     {
-        SceneManager.LoadScene(indexMenuScene);
+        SceneManagement.Inst.Scene_Menu();
     }
 
     // Fonction pour quitter l'application
     public void QuitGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
-        //Application.Quit();
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 }
