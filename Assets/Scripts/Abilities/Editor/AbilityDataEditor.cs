@@ -8,61 +8,106 @@ using UnityEngine;
 public class AbilityDataEditor : Editor
 {
     public SerializedProperty abilityName;
+    public SerializedProperty abilityIcon;
+    public SerializedProperty description;
     public SerializedProperty isUnlockedAbility;
 
-    public SerializedProperty activeAbility;
+    public SerializedProperty isActiveAbility;
 
+    public SerializedProperty baseDamage;
     public SerializedProperty castingTime;
     public SerializedProperty cooldown;
-    public SerializedProperty baseDamage;
+    public SerializedProperty duration;
+    public SerializedProperty attackRange;
 
-    public SerializedProperty bonusDamage;
-    public SerializedProperty bonusAttackSpeed;
+    public SerializedProperty hasPassiveBonus;
+
     public SerializedProperty bonusLife;
+    public SerializedProperty bonusDamage;
+    public SerializedProperty bonusDefense;
+    public SerializedProperty bonusAttackSpeed;
+    public SerializedProperty bonusDuration;
     public SerializedProperty bonusMovementSpeed;
+    public SerializedProperty bonusExperienceGain;
 
     private void OnEnable()
     {
         abilityName = serializedObject.FindProperty("abilityName");
+        abilityIcon = serializedObject.FindProperty("abilityIcon");
+        description = serializedObject.FindProperty("description");
         isUnlockedAbility = serializedObject.FindProperty("isUnlockedAbility");
 
-        activeAbility = serializedObject.FindProperty("activeAbility");
+        isActiveAbility = serializedObject.FindProperty("isActiveAbility");
 
+        baseDamage = serializedObject.FindProperty("baseDamage");
         castingTime = serializedObject.FindProperty("castingTime");
         cooldown = serializedObject.FindProperty("cooldown");
-        baseDamage = serializedObject.FindProperty("baseDamage");
+        duration = serializedObject.FindProperty("duration");
+        attackRange = serializedObject.FindProperty("attackRange");
 
-        bonusDamage = serializedObject.FindProperty("bonusDamage");
-        bonusAttackSpeed = serializedObject.FindProperty("bonusAttackSpeed");
+        hasPassiveBonus = serializedObject.FindProperty("hasPassiveBonus");
+
         bonusLife = serializedObject.FindProperty("bonusLife");
+        bonusDamage = serializedObject.FindProperty("bonusDamage");
+        bonusDefense = serializedObject.FindProperty("bonusDefense");
+        bonusAttackSpeed = serializedObject.FindProperty("bonusAttackSpeed");
+        bonusDuration = serializedObject.FindProperty("bonusDuration");
         bonusMovementSpeed = serializedObject.FindProperty("bonusMovementSpeed");
+        bonusExperienceGain = serializedObject.FindProperty("bonusExperienceGain");
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.UpdateIfRequiredOrScript();
 
+        EditorGUILayout.LabelField("General Info", EditorStyles.boldLabel);
+        EditorGUILayout.Space(5);
         EditorGUILayout.PropertyField(abilityName, new GUIContent("Name"));
         if (abilityName.stringValue == string.Empty)
         {
-            EditorGUILayout.HelpBox("Caution: No name specified. Please name the monster!", MessageType.Warning);
+            EditorGUILayout.HelpBox("Caution: No name specified. Please name the ability!", MessageType.Warning);
         }
+        EditorGUILayout.PropertyField(abilityIcon, new GUIContent("Ability icon"));
+        EditorGUILayout.PropertyField(description, new GUIContent("Description"));
 
         EditorGUILayout.PropertyField(isUnlockedAbility, new GUIContent("Is the ability unlocked?"));
         EditorGUILayout.Space(10);
 
-        EditorGUILayout.PropertyField(activeAbility, new GUIContent("Is it an active ability?"));
-        EditorGUILayout.Space(10);
+        EditorGUILayout.PropertyField(isActiveAbility, new GUIContent("Is it an active ability?"));
+        EditorGUILayout.Space(5);
 
-        if(activeAbility.boolValue)
+        if(isActiveAbility.boolValue)
         {
             EditorGUI.indentLevel++;
+            EditorGUILayout.LabelField("Active ability stats", EditorStyles.boldLabel);
+            EditorGUILayout.Space(5);
+
+            EditorGUILayout.PropertyField(baseDamage, new GUIContent("Damage"));
+            EditorGUILayout.PropertyField(castingTime, new GUIContent("Casting time"));
+            EditorGUILayout.PropertyField(cooldown, new GUIContent("Cooldown"));
+            EditorGUILayout.PropertyField(duration, new GUIContent("Duration"));
+            EditorGUILayout.PropertyField(attackRange, new GUIContent("Attack range"));
 
             EditorGUI.indentLevel--;
         }
-        else
+
+        EditorGUILayout.Space(10);
+        EditorGUILayout.PropertyField(hasPassiveBonus, new GUIContent("Passive bonuses?"));
+        EditorGUILayout.Space(10);
+
+        if (hasPassiveBonus.boolValue)
         {
             EditorGUI.indentLevel++;
+            EditorGUILayout.LabelField("Passive bonus stats", EditorStyles.boldLabel);
+            EditorGUILayout.Space(5);
+
+            EditorGUILayout.PropertyField(bonusLife, new GUIContent("Bonus life"));
+            EditorGUILayout.PropertyField(bonusDamage, new GUIContent("Bonus damage"));
+            EditorGUILayout.PropertyField(bonusDefense, new GUIContent("Bonus defense"));
+            EditorGUILayout.PropertyField(bonusAttackSpeed, new GUIContent("Bonus attack speed"));
+            EditorGUILayout.PropertyField(bonusDuration, new GUIContent("Bonus duration"));
+            EditorGUILayout.PropertyField(bonusMovementSpeed, new GUIContent("Bonus movement speed"));
+            EditorGUILayout.PropertyField(bonusExperienceGain, new GUIContent("Bonus experience"));
 
             EditorGUI.indentLevel--;
         }

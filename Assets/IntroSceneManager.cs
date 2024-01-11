@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class IntroSceneManager : MonoBehaviour
 {
-    //Allumage des lumières
+    //Allumage des lumiï¿½res
     public GameObject FireClose;
     public GameObject FireFar;
 
@@ -26,6 +27,7 @@ public class IntroSceneManager : MonoBehaviour
     public bool SkullFlag = false;
     public bool JergalDialFlag = false;
     public bool CoroutineCalled = false;
+    public bool JergalDialDone = false;
 
 
     public void Start()
@@ -39,7 +41,7 @@ public class IntroSceneManager : MonoBehaviour
     {
         UnknownEntity.TriggerDialogue();
     }
-    public void Update()
+    public void FixedUpdate()
     {
         if(SkullFlag)
         {
@@ -61,11 +63,14 @@ public class IntroSceneManager : MonoBehaviour
             {
                 Jergal.TriggerDialogue();
                 JergalDialFlag=false;
+                JergalDialDone = true;
             }
         }
-        if (!JergalDialFlag && dm.flag)
+        if (JergalDialDone && dm.flag)
         {
             JergalAnimator.SetBool("OpenMouth", false);
+            // SceneManager do the thing
+            GameManager.Scene_Level1();
         }
     }
 

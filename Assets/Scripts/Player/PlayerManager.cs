@@ -8,22 +8,34 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private ObjectColliderDetector colliderDetector;
     [SerializeField] private ActionController actionController;
 
+    [SerializeField] private GameObject pauseMenu;
 
-    void OnEnable(){
+
+    void OnEnable()
+    {
         inputManager = GetComponent<InputManager>();
         movementController = GetComponent<MovementController>();
         colliderDetector = GetComponent<ObjectColliderDetector>();
         actionController = GetComponent<ActionController>();
     }
 
-    void Update(){
+    void Update()
+    {
+        PlayerInputs inputs = inputManager.Inputs;
 
-        movementController.UpdateInputs(inputManager.Inputs);
-        actionController.UpdateInputs(inputManager.Inputs);
+        if (GameManager.gameState == GameState.Pause) {
+            inputs = new PlayerInputs();
+        }
 
+        movementController.UpdateInputs(inputs);
+        actionController.UpdateInputs(inputs);
     }
 
-    void FixedUpdate(){
+    void FixedUpdate()
+    {
+        if (inputManager.Inputs.Escape.FixedOnDown) {
+            GameManager.ToggleGameState();
+        }
     }
 
 }
