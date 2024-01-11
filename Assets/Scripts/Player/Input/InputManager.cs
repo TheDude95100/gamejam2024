@@ -55,7 +55,7 @@ public class InputManager : MonoBehaviour
         _action1 = _playerActions.Player.Action1;
         _action2 = _playerActions.Player.Action2;
         _action3 = _playerActions.Player.Action3;
-        _action3 = _playerActions.Player.Action4;
+        _action4 = _playerActions.Player.Action4;
         _interaction = _playerActions.Player.Interact;
         _inventory = _playerActions.Player.Inventory;
 
@@ -86,11 +86,11 @@ public class InputManager : MonoBehaviour
 
         KeyInputDataUpdate(ref _playerInputs.Action1, _action1.ReadValue<float>() != 0f);
 
-        KeyInputDataUpdate(ref _playerInputs.Action2, _action1.ReadValue<float>() != 0f);
+        KeyInputDataUpdate(ref _playerInputs.Action2, _action2.ReadValue<float>() != 0f);
 
-        KeyInputDataUpdate(ref _playerInputs.Action3, _action1.ReadValue<float>() != 0f);
+        KeyInputDataUpdate(ref _playerInputs.Action3, _action3.ReadValue<float>() != 0f);
 
-        KeyInputDataUpdate(ref _playerInputs.Action4, _action1.ReadValue<float>() != 0f);
+        KeyInputDataUpdate(ref _playerInputs.Action4, _action4.ReadValue<float>() != 0f);
 
         KeyInputDataUpdate(ref _playerInputs.Escape, _escape.ReadValue<float>() != 0f);
     }
