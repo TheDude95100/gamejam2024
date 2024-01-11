@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
     private InputActions _playerActions;
     private InputAction _move, _moveUp, _moveDown,
         _cursorPosition, _cursorPositionDelta, _scroll,
-        _action1, _interaction, _inventory,
+        _action1, _action2, _action3, _action4, _interaction, _inventory,
         _escape;
 
     private void OnEnable()
@@ -53,6 +53,9 @@ public class InputManager : MonoBehaviour
         _scroll = _playerActions.Player.Scroll;
 
         _action1 = _playerActions.Player.Action1;
+        _action2 = _playerActions.Player.Action2;
+        _action3 = _playerActions.Player.Action3;
+        _action4 = _playerActions.Player.Action4;
         _interaction = _playerActions.Player.Interact;
         _inventory = _playerActions.Player.Inventory;
 
@@ -83,6 +86,12 @@ public class InputManager : MonoBehaviour
 
         KeyInputDataUpdate(ref _playerInputs.Action1, _action1.ReadValue<float>() != 0f);
 
+        KeyInputDataUpdate(ref _playerInputs.Action2, _action2.ReadValue<float>() != 0f);
+
+        KeyInputDataUpdate(ref _playerInputs.Action3, _action3.ReadValue<float>() != 0f);
+
+        KeyInputDataUpdate(ref _playerInputs.Action4, _action4.ReadValue<float>() != 0f);
+
         KeyInputDataUpdate(ref _playerInputs.Escape, _escape.ReadValue<float>() != 0f);
     }
 
@@ -103,6 +112,12 @@ public class InputManager : MonoBehaviour
         KeyInputDataUpdateTimer(ref _playerInputs.Inventory);
 
         KeyInputDataUpdateTimer(ref _playerInputs.Action1);
+
+        KeyInputDataUpdateTimer(ref _playerInputs.Action2);
+
+        KeyInputDataUpdateTimer(ref _playerInputs.Action3);
+
+        KeyInputDataUpdateTimer(ref _playerInputs.Action4);
 
         KeyInputDataUpdateTimer(ref _playerInputs.Escape);
     }
@@ -235,6 +250,9 @@ public struct PlayerInputs
     public KeyInput Interact;
     public KeyInput Inventory;
     public KeyInput Action1;
+    public KeyInput Action2;
+    public KeyInput Action3;
+    public KeyInput Action4;
     public KeyInput Escape;
 }
 

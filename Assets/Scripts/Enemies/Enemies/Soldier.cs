@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Soldier : EnemyBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Start is reserved for mother class, do not override it
 
     // Update is called once per frame
     void Update()
