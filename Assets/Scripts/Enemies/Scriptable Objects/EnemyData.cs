@@ -25,6 +25,8 @@ public class EnemyData : ScriptableObject
     [Range(0, 10)]
     public float maxRandomRadiusAvoidanceRange = 1f;
 
+    public bool targetSurrounding = true;
+
 
 
 

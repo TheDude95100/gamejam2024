@@ -17,6 +17,9 @@ MonoBehaviour:
   angularSpeed: 225
   acceleration: 8
   stoppingDistance: 1
+  minRandomRadiusAvoidanceRange: 0.3
+  maxRandomRadiusAvoidanceRange: 0.3
+  targetSurrounding: 1
   damage: 1
   visionRange: 10
   attackSpeed: 1
