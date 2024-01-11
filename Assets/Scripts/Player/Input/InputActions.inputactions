@@ -78,6 +78,33 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Action2",
+                    "type": "Value",
+                    "id": "02144094-0e28-4597-ba1f-3b0b2adb7aea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Action3",
+                    "type": "Value",
+                    "id": "be67be55-e440-4fab-86be-a26867d969b8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Action4",
+                    "type": "Value",
+                    "id": "735e1dd4-6f7d-4736-b5f2-72ef95cf675b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Interact",
                     "type": "Value",
                     "id": "bb477cbf-9a73-436f-835a-ac4f1a91a3b7",
@@ -413,7 +440,7 @@
                 {
                     "name": "",
                     "id": "8bd98660-5694-4ba9-9939-955c82342ba1",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -462,6 +489,39 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a9dbf932-be8d-411d-ac1f-befb43c03366",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4927397-c270-483a-9c3b-670ea2f0f06b",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "15710a2e-5d77-4414-b565-24fd1c0a8019",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
