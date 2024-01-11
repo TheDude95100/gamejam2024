@@ -23,7 +23,7 @@ public class EnemiesManager : MonoBehaviour
         enemies.Add(enemy);
     }
 
-    public void RemoveEnemy(EnemyBase enemy)
+    public void KillEnemy(EnemyBase enemy)
     {
         enemies.Remove(enemy);
         Destroy(enemy.gameObject);
