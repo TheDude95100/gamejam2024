@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject canvasMenu;
     [SerializeField] private GameObject canvasPause;
     [SerializeField] private GameObject canvasSettings;
+    [SerializeField] private GameObject canvasEaster;
 
     // Fonction pour démarrer le jeu
     public void StartGame()
@@ -30,6 +31,13 @@ public class UIController : MonoBehaviour
             canvasMenu.SetActive(false);
             canvasSettings.SetActive(true);
         }
+    }
+
+    // Fonction pour montrer l'easter
+    public void LaunchEaster()
+    {
+        canvasMenu.SetActive(!canvasMenu.activeSelf);
+        canvasEaster.SetActive(!canvasEaster.activeSelf);
     }
 
     // Fonction pour cacher les settings

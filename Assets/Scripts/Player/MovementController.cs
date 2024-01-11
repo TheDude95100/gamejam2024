@@ -111,8 +111,11 @@ public class MovementController : MonoBehaviour
     }
 
     private void Horizontal(){
+
         Vector2 movement = Move_XZ(inputs.Movement2d.Live);
+
         rb.AddForce(new Vector3(movement.x, 0, movement.y));
+
         // Debug.Log(rb.velocity);
     }
 
