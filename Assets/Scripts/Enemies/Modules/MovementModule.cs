@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,19 +8,21 @@ using UnityEngine.AI;
 public class MovementModule : MonoBehaviour
 {
     private NavMeshAgent agent;
-    private Transform target;
     private Transform player;
     private EnemyData enemyData;
+    private EnemyBase enemyBase;
 
     private bool playerDetected = false;
     private bool lostPlayer = true;
+    public bool groupHasDetectedPlayer = false;
 
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player").transform;
-        enemyData = GetComponent<EnemyBase>().enemyData;
+        enemyBase = GetComponent<EnemyBase>();
+        enemyData = enemyBase.enemyData;
     }
 
 
@@ -32,6 +35,8 @@ public class MovementModule : MonoBehaviour
         if (distance < Mathf.Pow(enemyData.visionRange, 2))
         {
             playerDetected = true;
+            EnemiesManager.Instance.NoticePlayerDetected(enemyBase.groupID);
+
             lostPlayer = false;
         }
         else if (distance > Mathf.Pow(enemyData.visionRange + enemyData.attackRange, 2))
@@ -41,11 +46,13 @@ public class MovementModule : MonoBehaviour
             if (!lostPlayer)
             {
                 lostPlayer = true;
+                EnemiesManager.Instance.NoticePlayerLost(enemyBase.groupID);
             }
         }
 
-        if (!playerDetected) return; // Player detected area
+        if (!playerDetected && !groupHasDetectedPlayer) return; // Player detected area
 
+        // Stop moving if player is in attack range
         if (distance > Mathf.Pow(enemyData.attackRange, 2))
         {
             agent.SetDestination(player.position);
@@ -54,5 +61,10 @@ public class MovementModule : MonoBehaviour
         {
             agent.SetDestination(transform.position);
         }
+    }
+
+    public bool HasLostPlayer()
+    {
+        return lostPlayer;
     }
 }
