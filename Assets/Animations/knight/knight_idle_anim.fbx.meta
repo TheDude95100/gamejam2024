@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ea71764abf4c2cf40995ad79c72835f7
+guid: bbf9b39cb268b3a47b898b113a859eee
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: convert_anim
+      name: knight idle anim
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 0
-      lastFrame: 60
+      firstFrame: 1
+      lastFrame: 91
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

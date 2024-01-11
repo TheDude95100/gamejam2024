@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ef1c9d64eb8c22447a75630d452fd2db
+guid: 7aa220043526a8248ae73993800d5502
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: spin_start_anim
+      name: spin_end_anim
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 1
-      lastFrame: 10
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
