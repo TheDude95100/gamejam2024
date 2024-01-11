@@ -9,21 +9,24 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private ActionController actionController;
 
 
-    void OnEnable(){
+    void OnEnable()
+    {
         inputManager = GetComponent<InputManager>();
         movementController = GetComponent<MovementController>();
         colliderDetector = GetComponent<ObjectColliderDetector>();
         actionController = GetComponent<ActionController>();
     }
 
-    void Update(){
+    void Update()
+    {
 
         movementController.UpdateInputs(inputManager.Inputs);
         actionController.UpdateInputs(inputManager.Inputs);
 
     }
 
-    void FixedUpdate(){
+    void FixedUpdate()
+    {
     }
 
 }
