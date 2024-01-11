@@ -27,7 +27,7 @@ public class UIController : MonoBehaviour
     public void LaunchSettings()
     {
         int index = SceneManager.GetActiveScene().buildIndex;
-        if (index == 0)
+        if (index == 1)
         {
             canvasPause.SetActive(true);
             //pause game
@@ -50,7 +50,7 @@ public class UIController : MonoBehaviour
     public void QuitSettings()
     {
         int index = SceneManager.GetActiveScene().buildIndex;
-        if (index == 0)
+        if (index == 1)
         {
             canvasPause.SetActive(false);
             //resume game
