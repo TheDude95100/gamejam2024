@@ -39,7 +39,7 @@ public class IntroSceneManager : MonoBehaviour
     {
         UnknownEntity.TriggerDialogue();
     }
-    public void Update()
+    public void FixedUpdate()
     {
         if(SkullFlag)
         {
