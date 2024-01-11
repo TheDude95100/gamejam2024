@@ -23,6 +23,8 @@ public class MovementModule : MonoBehaviour
 
     private bool invoked = false;
 
+    public bool locked = false;
+
     private enum State
     {
         Idle,
@@ -72,6 +74,8 @@ public class MovementModule : MonoBehaviour
 
     void Update()
     {
+        if (locked) return;
+
         float distanceX = Mathf.Abs(player.position.x - transform.position.x);
         float distanceZ = Mathf.Abs(player.position.z - transform.position.z);
         float distance = Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceZ, 2);
