@@ -15,13 +15,16 @@ public class LoadingScreen : MonoBehaviour
     }
     private void FixedUpdate(){
 
-               if (startTime + ( 0.25f * timeLoading) > Time.time) {
+        if (startTime + ( 0.25f * timeLoading) > Time.time) {
             loadStage = 1;
-        } else if (startTime + ( 0.50f * timeLoading) > Time.time) {
+        } else
+        if (startTime + ( 0.50f * timeLoading) > Time.time) {
             loadStage = 2;
-        } else if (startTime + ( 0.75f * timeLoading) > Time.time) {
+        } else
+        if (startTime + ( 0.75f * timeLoading) > Time.time) {
             loadStage = 3;
-        } else if (startTime + ( 1.00f * timeLoading) > Time.time) {
+        } else
+        if (startTime + ( 1.00f * timeLoading) > Time.time) {
             loadStage = 4;
         }
 

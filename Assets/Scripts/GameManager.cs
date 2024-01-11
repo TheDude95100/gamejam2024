@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MenuPricipal");
     }
     public static void Scene_FakeLoad() {
-        SceneManager.LoadScene("MenuPricipal");
+        SceneManager.LoadScene("FakeLoading");
     }
     public static void Scene_Cinematic() {
         SceneManager.LoadScene("Cinematic");

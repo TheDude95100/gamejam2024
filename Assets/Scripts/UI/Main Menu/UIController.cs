@@ -20,7 +20,7 @@ public class UIController : MonoBehaviour
     {
         audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length);
-        GameManager.Scene_FakeLoad();
+        GameManager.Scene_Cinematic();
     }
 
     // Fonction pour montrer les settings
