@@ -18,19 +18,20 @@ public class MovementModule : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.FindWithTag("Player").transform;
+        enemyBase = GetComponent<EnemyBase>();
+        enemyData = enemyBase.enemyData;
+
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = (float)enemyData.speed;
-        agent.angularSpeed = (float)enemyData.angularSpeed;
-        agent.acceleration = (float)enemyData.acceleration;
-        agent.stoppingDistance = (float)enemyData.stoppingDistance;
+        agent.speed = enemyData.speed;
+        agent.angularSpeed = enemyData.angularSpeed;
+        agent.acceleration = enemyData.acceleration;
+        agent.stoppingDistance = enemyData.stoppingDistance;
     }
 
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
-        enemyBase = GetComponent<EnemyBase>();
-        enemyData = enemyBase.enemyData;
     }
 
 
@@ -88,9 +89,9 @@ public class MovementModule : MonoBehaviour
         Vector3 finalPosition = hit.position;
 
         // DEBUG : Draw a cross on the random position
-        Debug.DrawLine(finalPosition + Vector3.up * 5, finalPosition - Vector3.up * 5, Color.red, 10);
-        Debug.DrawLine(finalPosition + Vector3.right * 5, finalPosition - Vector3.right * 5, Color.red, 10);
-        Debug.DrawLine(finalPosition + Vector3.forward * 5, finalPosition - Vector3.forward * 5, Color.red, 10);
+        Debug.DrawLine(finalPosition + Vector3.up * 5, finalPosition - Vector3.up * 5, Color.red, 2);
+        Debug.DrawLine(finalPosition + Vector3.right * 5, finalPosition - Vector3.right * 5, Color.red, 2);
+        Debug.DrawLine(finalPosition + Vector3.forward * 5, finalPosition - Vector3.forward * 5, Color.red, 2);
 
         Debug.Log("Agent has lost the player, moving to " + finalPosition);
         agent.SetDestination(finalPosition);
