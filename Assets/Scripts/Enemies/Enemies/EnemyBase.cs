@@ -9,21 +9,15 @@ public class EnemyBase : MonoBehaviour
     public int groupID = 0;
     public EnemyData enemyData;
 
-    private NavMeshAgent agent;
-    private Transform target;
-
 
     void Start()
     {
         EnemiesManager.Instance.AddEnemy(this);
-        agent = GetComponent<NavMeshAgent>();
-        target = GameObject.FindWithTag("Player").transform;
     }
 
 
     void Update()
     {
-        agent.SetDestination(target.position);
     }
 
 
@@ -39,5 +33,11 @@ public class EnemyBase : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, enemyData.attackRange);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2);
     }
 }
