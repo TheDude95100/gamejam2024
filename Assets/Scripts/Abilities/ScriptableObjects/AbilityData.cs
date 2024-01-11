@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityData : MonoBehaviour
+[CreateAssetMenu(fileName ="AbilityData", menuName ="Data/AbilityData")]
+public class AbilityData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private string abilityName;
+    [SerializeField] private float castingTime;
+    [SerializeField] private float cooldown;
+
+    public string getAbilityName()
     {
-        
+        return abilityName;
     }
 
-    // Update is called once per frame
-    void Update()
+    public float getCastingTime()
     {
-        
+        return castingTime;
+    }
+
+    public float getCooldown()
+    {
+        return cooldown;
     }
 }
