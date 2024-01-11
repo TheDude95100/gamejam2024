@@ -67,8 +67,8 @@ public class IntroSceneManager : MonoBehaviour
         if (!JergalDialFlag && dm.flag)
         {
             JergalAnimator.SetBool("OpenMouth", false);
-            GameManager.Scene_Level1();
             // SceneManager do the thing
+            GameManager.Scene_Level1();
         }
     }
 

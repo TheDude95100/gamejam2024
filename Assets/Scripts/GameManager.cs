@@ -26,6 +26,15 @@ public class GameManager : MonoBehaviour
     }
 
     public static GameState gameState = GameState.Normal;
+    public static void ToggleGameState(){
+
+        if (gameState == GameState.Normal) {
+            gameState = GameState.Pause;
+        } else {
+            gameState = GameState.Normal;
+        }
+
+    }
 
     public static void Scene_Menu() {
         SceneManager.LoadScene("MenuPricipal");
