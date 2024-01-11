@@ -27,6 +27,7 @@ public class IntroSceneManager : MonoBehaviour
     public bool SkullFlag = false;
     public bool JergalDialFlag = false;
     public bool CoroutineCalled = false;
+    public bool JergalDialDone = false;
 
 
     public void Start()
@@ -62,13 +63,14 @@ public class IntroSceneManager : MonoBehaviour
             {
                 Jergal.TriggerDialogue();
                 JergalDialFlag=false;
+                JergalDialDone = true;
             }
         }
-        if (!JergalDialFlag && dm.flag)
+        if (JergalDialDone && dm.flag)
         {
             JergalAnimator.SetBool("OpenMouth", false);
-            GameManager.Scene_Level1();
             // SceneManager do the thing
+            GameManager.Scene_Level1();
         }
     }
 

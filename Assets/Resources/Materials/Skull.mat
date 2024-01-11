@@ -59,7 +59,7 @@ Material:
     - _NoiseScale: 15.9
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 1
+    - _Speed: -0.0050029675
     m_Colors:
     - _Color: {r: 16, g: 0, b: 13.04637, a: 0}
   m_BuildTextureStacks: []
