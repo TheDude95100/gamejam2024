@@ -5,9 +5,9 @@ public class MovementController : MonoBehaviour
 {
 
     [Header("MOVEMENT")]
-    [SerializeField] private float moveSpeed = 20f;
+    [SerializeField] private float moveSpeed = 8f;
     [SerializeField] private float acceleration = 6f;
-    [SerializeField] private float decceleration = 6f;
+    [SerializeField] private float decceleration = 7f;
     [SerializeField] private float velPower = 1.2f;
     [SerializeField] private float friction = 0.7f;
 
@@ -30,10 +30,8 @@ public class MovementController : MonoBehaviour
     private Rigidbody rb;
     private PlayerInputs inputs;
 
-    private bool hasControl;
     private bool grounded;
     private bool facingRight;
-    private float gravityScale;
 
     #region Public
 
@@ -55,7 +53,6 @@ public class MovementController : MonoBehaviour
     int fixedUpdateCount = 0;
     private void Update()
     {
-
         IsGrounded();
         // Debug.Log(_grounded);
         if (inputs.Jump.OnDown)
@@ -71,7 +68,7 @@ public class MovementController : MonoBehaviour
         // Debug.Log(_frameInput.Movement2d.Live);
         if (DisabledControls) return;
         Horizontal();
-        Jump();
+        // Jump();
         GravityModifier();
     }
 
@@ -82,6 +79,7 @@ public class MovementController : MonoBehaviour
     private void IsGrounded()
     {
         bool groundedLive = Physics.Raycast(transform.position, Vector3.down, distanceAvecLeSol, groundLayerMask);
+        Debug.DrawRay(transform.position, new Vector3(0,-distanceAvecLeSol,0));
         if (!groundedLive && grounded)
         {
             frameLeftGround = fixedUpdateCount;

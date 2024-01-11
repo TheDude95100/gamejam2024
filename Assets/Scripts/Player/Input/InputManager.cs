@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour
             Inst = this;
             _playerActions = new InputActions();
             _playerActions.Enable();
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
 
         _move = _playerActions.Player.Move;
