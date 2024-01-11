@@ -13,7 +13,7 @@ public class ObjectColliderDetector : MonoBehaviour
         {
             switch (Time.time - timeLastSort)
             {
-                case > 0.2f:
+                case > 0.2f: // 10 fixed update
                     SortListByDistance();
                     break;
                 default:
@@ -71,7 +71,6 @@ public class ObjectColliderDetector : MonoBehaviour
     protected void AddObject(GameObject gameObject)
     {
         objectList.Add(gameObject);
-        SortListByDistance();
     }
     protected void Remove(GameObject gameObject)
     {

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class IntroSceneManager : MonoBehaviour
 {
-    //Allumage des lumières
+    //Allumage des lumiï¿½res
     public GameObject FireClose;
     public GameObject FireFar;
 
@@ -66,6 +66,7 @@ public class IntroSceneManager : MonoBehaviour
         if (!JergalDialFlag && dm.flag)
         {
             JergalAnimator.SetBool("OpenMouth", false);
+            // SceneManager do the thing
         }
     }
 
