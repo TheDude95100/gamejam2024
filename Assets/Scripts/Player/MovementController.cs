@@ -65,7 +65,8 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         fixedUpdateCount++;
-        // Debug.Log(_frameInput.Movement2d.Live);
+        // Debug.Log(inputs.Movement2d.Live);
+
         if (DisabledControls) return;
         Horizontal();
         // Jump();
@@ -128,7 +129,7 @@ public class MovementController : MonoBehaviour
 
     private void Horizontal(){
         rb.AddForce(new Vector3(axisX(), 0, axisZ()));
-        Debug.Log(rb.velocity);
+        // Debug.Log(rb.velocity);
     }
 
     // private void HorizontalTransform
