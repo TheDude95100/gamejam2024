@@ -217,6 +217,7 @@ public class MovementModule : MonoBehaviour
         {
             Debug.Log("Agent is not trying to surround target");
             Debug.Log("Agent is moving to " + target.ToString());
+
             agent.SetDestination(target);
             return;
         }
