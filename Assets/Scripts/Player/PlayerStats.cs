@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [Header("Sarting stats")]
-    [SerializeField] private int maxLife = 20;
+    [SerializeField] private float maxLife = 20;
     [SerializeField] private int defense = 0;
 
     [SerializeField] private float basicAttackDamage = 2;
@@ -26,7 +26,7 @@ public class PlayerStats : MonoBehaviour
     private int bonusExpGain;
 
 
-    public int MaxLife => maxLife;
+    public float MaxLife => maxLife;
     public int Defense => defense;
 
     public float BasicAttackDamage => basicAttackDamage;
@@ -86,7 +86,7 @@ public class PlayerStats : MonoBehaviour
         bonusExpGain += modifier;
     }
 
-    public void IncreaseMaxLife(int modifier)
+    public void IncreaseMaxLife(float modifier)
     {
         maxLife += modifier;
     }
