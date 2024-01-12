@@ -17,14 +17,16 @@ MonoBehaviour:
   description: Deliver quick slashes at the enemy.
   isUnlockedAbility: 1
   isActiveAbility: 1
+  baseDamage: 2
   castingTime: 0.75
   cooldown: 0
-  baseDamage: 2
+  duration: 100
   attackRange: 3
   hasPassiveBonus: 0
   bonusLife: 3
   bonusDamage: 3
   bonusDefense: 3
   bonusAttackSpeed: 3
+  bonusDuration: 0.25
   bonusMovementSpeed: 3
-  bonusExperience: 3
+  bonusExperienceGain: 3
