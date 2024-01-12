@@ -21,6 +21,6 @@ public class LevelChange : MonoBehaviour
     private void OnTriggerEnter(Collider col)
     {
         Debug.Log(col.gameObject.name);
-        // TODO GO TO BOSS
+        GameManager.Scene_Boss();
     }
 }

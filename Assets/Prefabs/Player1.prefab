@@ -543,6 +543,7 @@ GameObject:
   - component: {fileID: 5885474491903661576}
   - component: {fileID: 9150862509022366995}
   - component: {fileID: 7667584773476613813}
+  - component: {fileID: -1640309228042326625}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -714,9 +715,10 @@ MonoBehaviour:
   conversionSound: {fileID: 0}
   animator: {fileID: 3668407514682798075}
   disabledClips: 0
-  comboAttackCompleteStep1: 0
-  comboAttackCompleteStep2: 0
-  comboAttackCompleteStep3: 0
+  attack1collider: {fileID: 0}
+  attack1s1time: 0.5
+  attack1s2time: 0.5
+  attack1s3time: 0.5
 --- !u!114 &7667584773476613813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,6 +736,29 @@ MonoBehaviour:
   basicAttackDamage: 2
   heavyStrikeDamage: 3
   whirlwindDamage: 2
+  availableSkillPoints: 0
+  animator: {fileID: 0}
+--- !u!114 &-1640309228042326625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7943036737201366809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d76f24409a39604ca3986f91ce6d28a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interpolate: 1
+  jiggleRigs:
+  - rootTransform: {fileID: 9010145391527607742}
+    jiggleSettings: {fileID: 11400000, guid: 7c3cbf57040c99649837f22d525a5e48, type: 2}
+    ignoredTransforms: []
+    colliders: []
+  wind: {x: 0, y: 0, z: 0}
+  levelOfDetail: {fileID: 0}
+  debugDraw: 0
 --- !u!1 &8547121658833597846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,6 +2322,12 @@ Transform:
 --- !u!1 &8017305958965784379 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a386157598fa534cb02bf643f875f45,
+    type: 3}
+  m_PrefabInstance: {fileID: 7170390980272198250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9010145391527607742 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2200061081843019732, guid: 7a386157598fa534cb02bf643f875f45,
     type: 3}
   m_PrefabInstance: {fileID: 7170390980272198250}
   m_PrefabAsset: {fileID: 0}

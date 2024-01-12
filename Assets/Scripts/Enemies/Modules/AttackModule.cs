@@ -42,8 +42,10 @@ public class AttackModule : MonoBehaviour
     {
         // TODO If player is not dead return
 
+
         timer -= Time.deltaTime;
         timerSpecialAttack -= Time.deltaTime;
+        // cooldown is currentAbility.Cooldown in secondes
         if (timer > currentAbility.Cooldown + abilityDuration)
         {
             state = State.Casting;
@@ -82,7 +84,7 @@ public class AttackModule : MonoBehaviour
 
         previousState = state;
 
-        if (state != State.Idle)
+        if (state != State.Idle && state != State.Attacking)
         {
             return;
         }
@@ -101,13 +103,14 @@ public class AttackModule : MonoBehaviour
     void Idle()
     {
         Debug.Log("Idle fase");
+        enemyBase.UnlockMovements();
         enemyBase.SetIdle();
     }
 
     void Caste()
     {
         Debug.Log("Casting fase");
-        enemyBase.SetIdle();
+        //enemyBase.SetIdle();
 
         ChooseAbility();
         // Lock movements
@@ -117,6 +120,11 @@ public class AttackModule : MonoBehaviour
     void Attack()
     {
         Debug.Log("Attacking fase");
+
+        ChooseAbility();
+        // Lock movements
+        enemyBase.LockMovements();
+
         // Face the player
         Vector3 direction = player.position - transform.position;
         direction.y = 0f;
@@ -129,7 +137,6 @@ public class AttackModule : MonoBehaviour
         else
         {
             enemyBase.SetAttackSpe();
-            timerSpecialAttack = currentAbility.Cooldown + abilityDuration + currentAbility.CastingTime;
         }
     }
 
@@ -137,28 +144,32 @@ public class AttackModule : MonoBehaviour
     {
         Debug.Log("Cooldown fase");
         enemyBase.UnlockMovements();
-        enemyBase.SetIdle();
+        //enemyBase.SetIdle();
     }
 
     void ChooseAbility()
     {
-        //int randomIndex = Random.Range(0, abilityData.Length);
-        //currentAbility = abilityData[randomIndex];
+        Debug.Log("ChooseAbility");
+        int randomIndex = Random.Range(0, abilityData.Length);
+        currentAbility = abilityData[randomIndex];
 
+        /*
         if (abilityData.Length == 1)
         {
             currentAbility = abilityData[0];
             return;
         }   
 
-        if (timerSpecialAttack > 0f)
+        Debug.Log("ChooseAbility : " + timerSpecialAttack);
+        if (timerSpecialAttack < 0f)
         {
-            currentAbility = abilityData[0];
+            currentAbility = abilityData[1];
         }
         else
         { 
-            currentAbility = abilityData[1];
+            currentAbility = abilityData[0];
         }
+        */
     }
 
 
