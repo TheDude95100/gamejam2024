@@ -118,10 +118,9 @@ public class MovementController : MonoBehaviour
         rb.AddForce(new Vector3(movement.x, 0, movement.y));
 
         bool hasMovement = (Mathf.Abs(movement.x) > 0.1f) || (Mathf.Abs(movement.y) > 0.1f);
-
         animator.SetBool("isRunning", hasMovement);
 
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
     }
 
     // private void HorizontalTransform
