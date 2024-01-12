@@ -60,6 +60,7 @@ public class EnemyBase : MonoBehaviour
 
     void ResetAll()
     {
+        Debug.Log("Resetting all");
         animator.SetBool("IsRunning", false);
         animator.SetBool("IsAttacking", false);
     }

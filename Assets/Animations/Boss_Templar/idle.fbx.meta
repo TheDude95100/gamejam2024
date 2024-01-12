@@ -33,10 +33,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: TemplarIdle
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 76
       wrapMode: 0
       orientationOffsetY: 0
