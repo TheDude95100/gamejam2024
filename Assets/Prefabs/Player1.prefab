@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1846207268133276248}
   - component: {fileID: 8200012299479354162}
+  - component: {fileID: 1778112840857899189}
   m_Layer: 0
   m_Name: Heavy
   m_TagString: Untagged
@@ -42,9 +43,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.663
+  m_audioClip: {fileID: 8300000, guid: 80bd9d4bd8318a14485df52d305370ad, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.392
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -128,6 +129,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!164 &1778112840857899189
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351130172502115888}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: -1000
+  m_RoomHF: -698
+  m_DecayTime: 7.24
+  m_DecayHFRatio: 0.33
+  m_ReflectionsLevel: -1166
+  m_ReverbLevel: 16
+  m_ReverbDelay: 0.03
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 10
 --- !u!1 &355800494400638350
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +323,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.614
   m_Pitch: 1
   Loop: 0
@@ -682,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttackSound: {fileID: 2195165136171256859}
-  heavyAttackSound: {fileID: 0}
+  heavyAttackSound: {fileID: 8200012299479354162}
   whirlwindSound: {fileID: 1569799166338938828}
   conversionSound: {fileID: 0}
   animator: {fileID: 3668407514682798075}
