@@ -18,10 +18,10 @@ MonoBehaviour:
   isUnlockedAbility: 1
   isActiveAbility: 1
   baseDamage: 5
-  castingTime: 0.75
-  cooldown: 6
+  castingTime: 0
+  cooldown: 15
   duration: 100
-  attackRange: 3
+  attackRange: 4
   hasPassiveBonus: 0
   bonusLife: 3
   bonusDamage: 3

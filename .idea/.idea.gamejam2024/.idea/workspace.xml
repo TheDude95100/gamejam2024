@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f986b4d7-e4fd-4bde-a440-10b1e883d0b2" name="Changes" comment="" />
+    <list default="true" id="f986b4d7-e4fd-4bde-a440-10b1e883d0b2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.gamejam2024/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.gamejam2024/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map/Dungeon1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map/Dungeon1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main/Level1.unity" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,9 +20,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2an5AUnYH2P6sKatOEPlJLd1SWk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -38,15 +42,15 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\audre\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\audre\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\audre\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\Galahad\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Galahad\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\Galahad\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.16f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Unity\2022.3.16f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\audre\Documents\GitHub\gamejam2024 -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\audre\Documents\GitHub\gamejam2024" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -54,7 +58,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.16f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Unity\2022.3.16f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\audre\Documents\GitHub\gamejam2024 -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\audre\Documents\GitHub\gamejam2024" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -91,6 +95,7 @@
       <option name="presentableId" value="Default" />
       <updated>1704941360086</updated>
       <workItem from="1704941362640" duration="3475000" />
+      <workItem from="1705064196179" duration="275000" />
     </task>
     <servers />
   </component>

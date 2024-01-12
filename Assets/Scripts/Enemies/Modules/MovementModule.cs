@@ -210,8 +210,6 @@ public class MovementModule : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, sLookRotation, Time.deltaTime * enemyData.angularSpeed * 0.1f);
 
                 state = State.Attacking;
-
-                enemyBase.SetAttacking();
             }
         }
 
@@ -219,6 +217,9 @@ public class MovementModule : MonoBehaviour
         {
             Debug.Log("Agent is not trying to surround target");
             Debug.Log("Agent is moving to " + target.ToString());
+
+            // if agent is not on navmesh, place on navmesh
+            if (!agent.isOnNavMesh) agent.Warp(transform.position);
             agent.SetDestination(target);
             return;
         }

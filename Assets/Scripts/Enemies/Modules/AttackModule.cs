@@ -7,9 +7,11 @@ public class AttackModule : MonoBehaviour
 {
     private Transform player;
     private float timer;
+    private float timerSpecialAttack;
     private AbilityData[] abilityData;
     private AbilityData currentAbility;
     private EnemyBase enemyBase;
+    private float abilityDuration = 2f;
 
     private enum State
     {
@@ -25,13 +27,14 @@ public class AttackModule : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         timer = 0f;
+        timerSpecialAttack = 0f;
 
         abilityData = GetComponent<EnemyBase>().abilityData;
         state = State.Idle;
 
         enemyBase = GetComponent<EnemyBase>();
 
-        ChooseRandomAbility();
+        currentAbility = abilityData[0];
     }
 
 
@@ -40,11 +43,12 @@ public class AttackModule : MonoBehaviour
         // TODO If player is not dead return
 
         timer -= Time.deltaTime;
-        if (timer > currentAbility.Cooldown + currentAbility.Duration)
+        timerSpecialAttack -= Time.deltaTime;
+        if (timer > currentAbility.Cooldown + abilityDuration)
         {
             state = State.Casting;
         }
-        else if (timer > currentAbility.Duration)
+        else if (timer > abilityDuration)
         {
             state = State.Attacking;
         }
@@ -90,7 +94,7 @@ public class AttackModule : MonoBehaviour
 
         if (distance <= currentAbility.AttackRange)
         {
-            timer = currentAbility.Cooldown + currentAbility.Duration + currentAbility.CastingTime;
+            timer = currentAbility.Cooldown + abilityDuration + currentAbility.CastingTime;
         }
     }
 
@@ -104,7 +108,8 @@ public class AttackModule : MonoBehaviour
     {
         Debug.Log("Casting fase");
         enemyBase.SetIdle();
-        ChooseRandomAbility();
+
+        ChooseAbility();
         // Lock movements
         enemyBase.LockMovements();
     }
@@ -117,7 +122,15 @@ public class AttackModule : MonoBehaviour
         direction.y = 0f;
         transform.rotation = Quaternion.LookRotation(direction);
 
-        enemyBase.SetAttacking();
+        if (currentAbility == abilityData[0])
+        {
+            enemyBase.SetAttacking();
+        }
+        else
+        {
+            enemyBase.SetAttackSpe();
+            timerSpecialAttack = currentAbility.Cooldown + abilityDuration + currentAbility.CastingTime;
+        }
     }
 
     void Cooldown()
@@ -127,9 +140,30 @@ public class AttackModule : MonoBehaviour
         enemyBase.SetIdle();
     }
 
-    void ChooseRandomAbility()
+    void ChooseAbility()
     {
-        int randomIndex = Random.Range(0, abilityData.Length);
-        currentAbility = abilityData[randomIndex];
+        //int randomIndex = Random.Range(0, abilityData.Length);
+        //currentAbility = abilityData[randomIndex];
+
+        if (abilityData.Length == 1)
+        {
+            currentAbility = abilityData[0];
+            return;
+        }   
+
+        if (timerSpecialAttack > 0f)
+        {
+            currentAbility = abilityData[0];
+        }
+        else
+        { 
+            currentAbility = abilityData[1];
+        }
+    }
+
+
+    public Transform GetPlayerTransform()
+    {
+        return player;
     }
 }

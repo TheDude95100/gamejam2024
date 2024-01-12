@@ -1,28 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemiesManager : MonoBehaviour
 {
     public static EnemiesManager Instance;
+    public GameObject orb;
     private List<EnemyBase> enemies = new List<EnemyBase>();
 
     void Awake()
     {
         Instance = this;
     }
-
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-        
-    }
-
     public void AddEnemy(EnemyBase enemy)
     {
         Debug.Log("Added enemy : " + enemy.name);
@@ -31,6 +23,8 @@ public class EnemiesManager : MonoBehaviour
 
     public void KillEnemy(EnemyBase enemy)
     {
+        GameObject orb_instantiate = Instantiate(orb,enemy.transform.position, Quaternion.identity);
+        orb_instantiate.SetActive(true);
         enemies.Remove(enemy);
         Destroy(enemy.gameObject);
     }
