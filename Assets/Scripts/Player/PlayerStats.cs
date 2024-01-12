@@ -12,6 +12,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float heavyStrikeDamage = 3;
     [SerializeField] private float whirlwindDamage = 2;
 
+    [SerializeField] private int availableSkillPoints = 0;
+    [SerializeField] private Animator animator;
+
     private bool isAlive;
     private int level;
     private float currentLife;
@@ -30,7 +33,9 @@ public class PlayerStats : MonoBehaviour
     public float HeavyStrikeDamage => heavyStrikeDamage;
     public float WhirlwindDamage => whirlwindDamage;
 
+    public bool IsAlive => isAlive;
     public int Level => level;
+    public int AvailableSkillPoints => availableSkillPoints;
     public float CurrentLife => currentLife;
     public int CurrentExp => currentExp;
     public int ExpNextLevel => expNextLevel;
@@ -98,10 +103,25 @@ public class PlayerStats : MonoBehaviour
             LevelUP();
         }
     }
+
+    public bool SpendSkillPoint(int cost)
+    {
+        if(availableSkillPoints - cost < 0)
+        {
+            return false;
+        }
+        else
+        {
+            availableSkillPoints -= cost;
+            return true;
+        }
+    }
     
     private void LevelUP()
     {
         level += 1;
+        availableSkillPoints += 1;
+
         IncreaseMaxLife(3);
         HealDamage(MaxLife);
     }
@@ -121,6 +141,7 @@ public class PlayerStats : MonoBehaviour
         {
             currentLife = 0;
             isAlive = false;
+            animator.SetBool("isDead", true);
         }
     }
 
