@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 311477804ce0b4b479bfb653956211be, type: 3}
-  m_Name: VillagerAbility
+  m_Name: TemplarAbility
   m_EditorClassIdentifier: 
-  abilityName: stabidistab
+  abilityName: Punch
   abilityIcon: {fileID: 0}
-  description: that thing stings
+  description: Punch the enemy in the face.
   isUnlockedAbility: 1
   isActiveAbility: 1
   baseDamage: 3
