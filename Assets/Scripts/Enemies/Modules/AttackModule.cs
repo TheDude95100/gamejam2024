@@ -44,7 +44,8 @@ public class AttackModule : MonoBehaviour
 
         timer -= Time.deltaTime;
         timerSpecialAttack -= Time.deltaTime;
-        if (timer > currentAbility.Cooldown + abilityDuration)
+        // cooldown is currentAbility.Cooldown in secondes
+        if (timer > currentAbility.Cooldown * 60f + abilityDuration)
         {
             state = State.Casting;
         }
@@ -117,6 +118,11 @@ public class AttackModule : MonoBehaviour
     void Attack()
     {
         Debug.Log("Attacking fase");
+
+        ChooseAbility();
+        // Lock movements
+        enemyBase.LockMovements();
+
         // Face the player
         Vector3 direction = player.position - transform.position;
         direction.y = 0f;
@@ -142,6 +148,7 @@ public class AttackModule : MonoBehaviour
 
     void ChooseAbility()
     {
+        Debug.Log("ChooseAbility");
         //int randomIndex = Random.Range(0, abilityData.Length);
         //currentAbility = abilityData[randomIndex];
 
@@ -151,13 +158,14 @@ public class AttackModule : MonoBehaviour
             return;
         }   
 
-        if (timerSpecialAttack > 0f)
+        Debug.Log("ChooseAbility : " + timerSpecialAttack);
+        if (timerSpecialAttack < 0f)
         {
-            currentAbility = abilityData[0];
+            currentAbility = abilityData[1];
         }
         else
         { 
-            currentAbility = abilityData[1];
+            currentAbility = abilityData[0];
         }
     }
 
