@@ -210,8 +210,6 @@ public class MovementModule : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, sLookRotation, Time.deltaTime * enemyData.angularSpeed * 0.1f);
 
                 state = State.Attacking;
-
-                enemyBase.SetAttacking();
             }
         }
 

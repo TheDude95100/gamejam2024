@@ -19,12 +19,12 @@ public class EnemyBase : MonoBehaviour
     {
         EnemiesManager.Instance.AddEnemy(this);
 
+
         if (groupID == -1)
         {
             int randomGroupID = Random.Range(100, 10000000);
             groupID = randomGroupID; // good enough
         }
-
         animator = GetComponent<Animator>();
         currentHealth = enemyData.health;
     }
@@ -53,6 +53,13 @@ public class EnemyBase : MonoBehaviour
         if (animator == null) return;
         ResetAll();
         animator.SetBool("IsAttacking", true);
+    }
+
+    public void SetAttackSpe()
+    {
+        if (animator == null) return;
+        ResetAll();
+        animator.SetBool("IsAttackSpe", true);
     }
 
     public void SetIdle()

@@ -40,7 +40,7 @@ public class LoadingScreen : MonoBehaviour
                 chargementText.text = $"{startText} ...";
                 break;
             case 4:
-                GameManager.Scene_Level();
+                //GameManager.Scene_Level();
                 break;
             default:
              break;
