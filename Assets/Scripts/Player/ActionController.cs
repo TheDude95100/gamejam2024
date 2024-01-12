@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class ActionController : MonoBehaviour
 {
@@ -19,13 +20,16 @@ public class ActionController : MonoBehaviour
         idle_anim
     }
 
-    private float attack1 = 0f;
+    private float attack1starttime = 0f;
+    private bool attack1Active = false;
+    [SerializeField] private ObjectColliderDetector attack1collider;
+
     private bool attack1s1tggl = false;
-    [SerializeField] private float attack1s1time = 0f;
+    [SerializeField] private float attack1s1time = 0.5f;
     private bool attack1s2tggl = false;
-    [SerializeField] private float attack1s2time = 0f;
+    [SerializeField] private float attack1s2time = 0.5f;
     private bool attack1s3tggl = false;
-    [SerializeField] private float attack1s3time = 0f;
+    [SerializeField] private float attack1s3time = 0.5f;
 
     private void Update()
     {
@@ -52,16 +56,8 @@ public class ActionController : MonoBehaviour
                 break;
         }
 
-        if (inputs.Action1.OnDown)
-        {
-            basicAttackSound.Play();
-            animator.SetBool("doComboAttack", true);
-        }
-        if (!inputs.Action1.Live && activeAnim == ClipAnims.atk_combo_anim)
-        {
-            basicAttackSound.Stop();
-            animator.SetBool("doComboAttack", false);
-        }
+        checkAttack1();
+
         if (inputs.Action2.OnDown)
         {
             heavyAttackSound.Play();
@@ -83,7 +79,50 @@ public class ActionController : MonoBehaviour
         }
     }
 
-    private void checkAttack(){
+    private void resetAttack1(){
+        attack1Active = false;
+        attack1s1tggl = false;
+        attack1s2tggl = false;
+        attack1s3tggl = false;
+    }
+
+    private void checkAttack1(){
+        bool inputCheck = inputs.Action1.OnDown;
+
+        // click while doing nothing
+        Debug.Log($"{attack1s1tggl} {attack1starttime} {attack1Active}");
+        if (!attack1s1tggl) {
+            if (inputCheck) {
+                attack1starttime = Time.time;
+                attack1Active = true;
+                attack1s1tggl = true;
+                basicAttackSound.Play();
+            }
+        }
+
+        // click while attacking
+        if (attack1s1tggl && !attack1s2tggl) {
+            if (inputCheck) {
+                attack1s2tggl = true;
+            }
+            if (attack1starttime + attack1s1time <= Time.time){
+                attack1s1tggl = false;
+                attack1Active = false;
+            }
+        }
+
+        if (attack1s2tggl && !attack1s3tggl) {
+            if (inputCheck) {
+                attack1s3tggl = true;
+            }
+            if (attack1starttime + attack1s2time <= Time.time){
+                attack1s1tggl = false;
+                attack1s2tggl = false;
+                attack1Active = false;
+            }
+        }
+
+        animator.SetBool("doComboAttack", attack1Active);
 
     }
 
