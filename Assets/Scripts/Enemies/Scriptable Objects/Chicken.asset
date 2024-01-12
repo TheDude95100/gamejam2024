@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Chicken
   m_EditorClassIdentifier: 
   health: 1
-  speed: 6
+  speed: 15
   angularSpeed: 250
   acceleration: 16
-  stoppingDistance: 1
+  stoppingDistance: 4
   minRandomRadiusAvoidanceRange: 0.2
   maxRandomRadiusAvoidanceRange: 0.2
   targetSurrounding: 0
