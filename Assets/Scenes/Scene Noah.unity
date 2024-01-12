@@ -1287,6 +1287,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kronk
       objectReference: {fileID: 0}
+    - target: {fileID: 2640289048673101631, guid: 989403a68cc2f32499370d41c4fe69cc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3454226048591592837, guid: 989403a68cc2f32499370d41c4fe69cc,
         type: 3}
       propertyPath: m_LocalPosition.x

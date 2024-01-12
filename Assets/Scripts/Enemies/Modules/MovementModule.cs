@@ -142,6 +142,7 @@ public class MovementModule : MonoBehaviour
         agent.enabled = true;
 
         if (abilityData.BaseDamage > 0) agent.SetDestination(lastSeen);
+        if (abilityData.BaseDamage > 0) enemyBase.SetRunning();
 
         state = State.Moving;
     }
@@ -185,7 +186,9 @@ public class MovementModule : MonoBehaviour
             state = State.Moving;
             enemyBase.SetRunning();
 
-            agent.SetDestination(target);
+            // if agent is not on navmesh, place on navmesh
+            if (!agent.isOnNavMesh) agent.Warp(transform.position);
+            if (agent.isOnNavMesh) agent.SetDestination(target);
         }
         else
         {
