@@ -53,7 +53,6 @@ public class MovementController : MonoBehaviour
     int fixedUpdateCount = 0;
     private void Update()
     {
-        if (GameManager.gameState == GameState.Pause) return;
         IsGrounded();
         // Debug.Log(_grounded);
         if (inputs.Jump.OnDown)
@@ -66,7 +65,6 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         fixedUpdateCount++;
-        if (GameManager.gameState == GameState.Pause) return;
         // Debug.Log(inputs.Movement2d.Live);
 
         if (DisabledControls) return;

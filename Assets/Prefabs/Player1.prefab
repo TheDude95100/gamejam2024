@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.663
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -172,7 +172,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e9be37fdc4ca980449f17a313d9eac02, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.672
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -300,7 +300,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.614
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -564,7 +564,7 @@ MonoBehaviour:
   movementController: {fileID: 4003605718598959777}
   colliderDetector: {fileID: 5885474491903661576}
   actionController: {fileID: 7220323138504425302}
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 1020320094703172727}
 --- !u!114 &599159787512932069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,9 +618,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttackSound: {fileID: 2195165136171256859}
-  heavyAttackSound: {fileID: 0}
+  heavyAttackSound: {fileID: 8200012299479354162}
   whirlwindSound: {fileID: 1569799166338938828}
-  conversionSound: {fileID: 0}
+  conversionSound: {fileID: 4160691418234423016}
   animator: {fileID: 3668407514682798075}
 --- !u!136 &7541470170205451223
 CapsuleCollider:
@@ -802,7 +802,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -867,7 +867,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: da237821c20687c47b97e0c08ed9b246, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.437
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1064,11 +1064,52 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4444963682732666716, guid: 51d4508e975218b47b5bb8157d2e2df9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444963682732666716, guid: 51d4508e975218b47b5bb8157d2e2df9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444963682732666716, guid: 51d4508e975218b47b5bb8157d2e2df9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8369713002162023187}
+    - target: {fileID: 4444963682732666716, guid: 51d4508e975218b47b5bb8157d2e2df9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444963682732666716, guid: 51d4508e975218b47b5bb8157d2e2df9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TogglePause
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444963682732666716, guid: 51d4508e975218b47b5bb8157d2e2df9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444963682732666716, guid: 51d4508e975218b47b5bb8157d2e2df9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51d4508e975218b47b5bb8157d2e2df9, type: 3}
+--- !u!1 &1020320094703172727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3129902631832456089, guid: 51d4508e975218b47b5bb8157d2e2df9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2686188700921411566}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1838813628907438738 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4378489656446711164, guid: 51d4508e975218b47b5bb8157d2e2df9,

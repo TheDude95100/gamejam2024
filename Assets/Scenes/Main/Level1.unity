@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+  m_AmbientSkyColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
@@ -260,12 +260,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &1101656415 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1569799166338938828, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1908303410}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1142250492
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,24 +328,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1296433362 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8200012299479354162, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1908303410}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1503799292 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4160691418234423016, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1908303410}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1743104054 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2195165136171256859, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1908303410}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1810355681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -686,55 +662,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1569799166338938828, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.672
-      objectReference: {fileID: 0}
-    - target: {fileID: 2195165136171256859, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.437
-      objectReference: {fileID: 0}
-    - target: {fileID: 2589234117657473152, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-        type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4160691418234423016, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.614
-      objectReference: {fileID: 0}
-    - target: {fileID: 7220323138504425302, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-        type: 3}
-      propertyPath: whirlwindSound
-      value: 
-      objectReference: {fileID: 1101656415}
-    - target: {fileID: 7220323138504425302, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-        type: 3}
-      propertyPath: conversionSound
-      value: 
-      objectReference: {fileID: 1503799292}
-    - target: {fileID: 7220323138504425302, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-        type: 3}
-      propertyPath: basicAttackSound
-      value: 
-      objectReference: {fileID: 1743104054}
-    - target: {fileID: 7220323138504425302, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-        type: 3}
-      propertyPath: heavyAttackSound
-      value: 
-      objectReference: {fileID: 1296433362}
     - target: {fileID: 7943036737201366809, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
         type: 3}
       propertyPath: m_Name
       value: Player1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8200012299479354162, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.663
       objectReference: {fileID: 0}
     - target: {fileID: 8877096514514999696, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
         type: 3}

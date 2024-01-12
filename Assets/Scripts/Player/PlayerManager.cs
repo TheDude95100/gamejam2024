@@ -21,18 +21,24 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        PlayerInputs inputs = inputManager.Inputs;
+        PlayerInputs inputs = new PlayerInputs();
 
         if (inputManager.Inputs.Escape.OnDown) {
-            GameManager.ToggleGameState();
+            TogglePause();
         }
 
-        if (GameManager.gameState == GameState.Pause) {
-            inputs = new PlayerInputs();
+        if (GameManager.gameState != GameState.Pause) {
+            inputs = inputManager.Inputs;
         }
+
+        pauseMenu.SetActive(GameManager.gameState == GameState.Pause);
 
         movementController.UpdateInputs(inputs);
         actionController.UpdateInputs(inputs);
+    }
+
+    public void TogglePause(){
+        GameManager.ToggleGameState();
     }
 
     void FixedUpdate()
