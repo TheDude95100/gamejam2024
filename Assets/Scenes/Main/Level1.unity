@@ -1151,6 +1151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb00bf755278b3479e6120e6ba24075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orb: {fileID: 0}
 --- !u!4 &1779216692
 Transform:
   m_ObjectHideFlags: 0
@@ -1252,6 +1253,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kronk
       objectReference: {fileID: 0}
+    - target: {fileID: 4488271418230476846, guid: dbe98c3222ce7ba4c84d9b6fe377406f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488271418230476846, guid: dbe98c3222ce7ba4c84d9b6fe377406f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4952199559253102292, guid: dbe98c3222ce7ba4c84d9b6fe377406f,
         type: 3}
       propertyPath: dialogueBox
@@ -1318,13 +1329,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2724271510276506123, guid: dbe98c3222ce7ba4c84d9b6fe377406f, type: 3}
+    - {fileID: 575654271696050741, guid: dbe98c3222ce7ba4c84d9b6fe377406f, type: 3}
+    - {fileID: 2882136871155977656, guid: dbe98c3222ce7ba4c84d9b6fe377406f, type: 3}
+    - {fileID: 5847570492845924242, guid: dbe98c3222ce7ba4c84d9b6fe377406f, type: 3}
+    - {fileID: 6426882048744060913, guid: dbe98c3222ce7ba4c84d9b6fe377406f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 331920277553400551, guid: dbe98c3222ce7ba4c84d9b6fe377406f,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 779865974}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6487254378212083054, guid: dbe98c3222ce7ba4c84d9b6fe377406f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1976251289}
+    - targetCorrespondingSourceObject: {fileID: 6487254378212083054, guid: dbe98c3222ce7ba4c84d9b6fe377406f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1976251288}
   m_SourcePrefab: {fileID: 100100000, guid: dbe98c3222ce7ba4c84d9b6fe377406f, type: 3}
 --- !u!95 &1831422742 stripped
 Animator:
@@ -1340,6 +1364,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1838813628907438738, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838813628907438738, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838813628907438738, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4003605718598959777, guid: 4d9ef8be2fca89c8bb2e4ba9845ef9cb,
         type: 3}
       propertyPath: body
@@ -1683,6 +1722,47 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1976251283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6487254378212083054, guid: dbe98c3222ce7ba4c84d9b6fe377406f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1829074973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1976251288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976251283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd931fbbc974bc40a4d033bc432193f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &1976251289
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976251283}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5.000003
+  m_Height: 21.77
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0.000045776367}
 --- !u!1 &2019476244
 GameObject:
   m_ObjectHideFlags: 0
