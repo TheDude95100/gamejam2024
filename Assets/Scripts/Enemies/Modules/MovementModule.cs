@@ -23,7 +23,7 @@ public class MovementModule : MonoBehaviour
 
     private bool invoked = false;
 
-    public bool locked = false;
+    private bool locked = false;
 
     private enum State
     {
@@ -83,7 +83,7 @@ public class MovementModule : MonoBehaviour
         if (distance < Mathf.Pow(enemyData.visionRange, 2))
         {
             playerDetected = true;
-            EnemiesManager.Instance.NoticePlayerDetected(enemyBase.groupID);
+            if (!groupHasDetectedPlayer) EnemiesManager.Instance.NoticePlayerDetected(enemyBase.groupID);
 
             lostPlayer = false;
         }
@@ -96,6 +96,11 @@ public class MovementModule : MonoBehaviour
                 lostPlayer = true;
                 EnemiesManager.Instance.NoticePlayerLost(enemyBase.groupID);
             }
+        }
+
+        if (!groupHasDetectedPlayer && agent.velocity.magnitude < 0.1f)
+        {
+            enemyBase.SetIdle();
         }
 
         if (!groupHasDetectedPlayer) return; // Player detected area
@@ -179,32 +184,32 @@ public class MovementModule : MonoBehaviour
             target = player.position;
 
             state = State.Moving;
+            enemyBase.SetRunning();
         }
         else
         {
             // cast a ray to check for obstacles
             RaycastHit hit;
 
-            if (Physics.Raycast(transform.position, transform.forward, out hit, abilityData.AttackRange))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, abilityData.AttackRange) && !hit.collider.tag.Equals("Player"))
             {
-                if (hit.collider.gameObject.tag == "Player")
-                {
-                    Debug.Log("Agent is in attack range, stopping");
-                    target = transform.position;
+                target = player.position;
+                state = State.Moving;
+                enemyBase.SetRunning();
+            }
+            else
+            {
+                Debug.Log("Agent is in attack range, stopping");
+                target = transform.position;
 
-                    // Face the player
-                    Vector3 sDirection = (player.position - transform.position).normalized;
-                    Quaternion sLookRotation = Quaternion.LookRotation(new Vector3(sDirection.x, 0, sDirection.z));
-                    transform.rotation = Quaternion.Lerp(transform.rotation, sLookRotation, Time.deltaTime * enemyData.angularSpeed * 0.1f);
+                // Face the player
+                Vector3 sDirection = (player.position - transform.position).normalized;
+                Quaternion sLookRotation = Quaternion.LookRotation(new Vector3(sDirection.x, 0, sDirection.z));
+                transform.rotation = Quaternion.Lerp(transform.rotation, sLookRotation, Time.deltaTime * enemyData.angularSpeed * 0.1f);
 
-                    state = State.Attacking;
-                    return;
-                }
-                else
-                {
-                    target = player.position;
-                    state = State.Moving;
-                }
+                state = State.Attacking;
+
+                enemyBase.SetAttacking();
             }
         }
 
@@ -253,6 +258,7 @@ public class MovementModule : MonoBehaviour
     private void PassiveMovement()
     {
         state = State.Moving;
+        enemyBase.SetRunning();
 
         // Calculate the direction away from the player
         Vector3 fleeDirection = transform.position - player.transform.position;
@@ -286,6 +292,13 @@ public class MovementModule : MonoBehaviour
             // Set the destination for the NavMeshAgent to the calculated position
             agent.SetDestination(hit.position);
         }
+    }
+
+    internal void SetLock(bool v)
+    {
+        locked = v;
+        if (locked == true) Debug.Log("Movement locked");
+        else Debug.Log("Movement unlocked");
     }
 
     private void OnDrawGizmos()

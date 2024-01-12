@@ -36,6 +36,10 @@ public class ActionController : MonoBehaviour
         {   
             whirlwindSound.Stop();
         }
+    }
+
+    public void CheckTrigger()
+    {
 
     }
 
