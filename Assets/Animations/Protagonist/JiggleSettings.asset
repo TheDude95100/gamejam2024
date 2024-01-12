@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: JiggleSettings
   m_EditorClassIdentifier: 
   gravityMultiplier: 1
-  friction: 0.4
-  angleElasticity: 0.4
-  blend: 1
+  friction: 0.847
+  angleElasticity: 0.123
+  blend: 0.819
   airDrag: 0.1
   lengthElasticity: 0.8
   elasticitySoften: 0
