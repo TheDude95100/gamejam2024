@@ -133,4 +133,10 @@ public class AttackModule : MonoBehaviour
         int randomIndex = Random.Range(0, abilityData.Length);
         currentAbility = abilityData[randomIndex];
     }
+
+
+    public Transform GetPlayerTransform()
+    {
+        return player;
+    }
 }
