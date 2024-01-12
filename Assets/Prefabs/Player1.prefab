@@ -514,10 +514,10 @@ GameObject:
   - component: {fileID: 8369713002162023187}
   - component: {fileID: 599159787512932069}
   - component: {fileID: 4003605718598959777}
-  - component: {fileID: 7220323138504425302}
   - component: {fileID: 7541470170205451223}
   - component: {fileID: 1826242243380023652}
   - component: {fileID: 5885474491903661576}
+  - component: {fileID: 9150862509022366995}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -563,7 +563,7 @@ MonoBehaviour:
   inputManager: {fileID: 599159787512932069}
   movementController: {fileID: 4003605718598959777}
   colliderDetector: {fileID: 5885474491903661576}
-  actionController: {fileID: 7220323138504425302}
+  actionController: {fileID: 9150862509022366995}
   pauseMenu: {fileID: 1020320094703172727}
 --- !u!114 &599159787512932069
 MonoBehaviour:
@@ -605,23 +605,6 @@ MonoBehaviour:
     m_Bits: 8
   distanceAvecLeSol: 1.05
   DisabledControls: 0
---- !u!114 &7220323138504425302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7943036737201366809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45046da779316564a8c9991fe195fff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  basicAttackSound: {fileID: 2195165136171256859}
-  heavyAttackSound: {fileID: 8200012299479354162}
-  whirlwindSound: {fileID: 1569799166338938828}
-  conversionSound: {fileID: 4160691418234423016}
-  animator: {fileID: 3668407514682798075}
 --- !u!136 &7541470170205451223
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -686,6 +669,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLastSort: 0
   objectList: []
+--- !u!114 &9150862509022366995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7943036737201366809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45046da779316564a8c9991fe195fff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAttackSound: {fileID: 2195165136171256859}
+  heavyAttackSound: {fileID: 0}
+  whirlwindSound: {fileID: 1569799166338938828}
+  conversionSound: {fileID: 0}
+  animator: {fileID: 3668407514682798075}
 --- !u!1 &8547121658833597846
 GameObject:
   m_ObjectHideFlags: 0
