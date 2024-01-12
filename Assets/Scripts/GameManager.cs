@@ -21,8 +21,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnEnable() {
+    private void Start() {
         DontDestroyOnLoad(_inst.gameObject);
+        gameState = GameState.Normal;
     }
 
     public static GameState gameState = GameState.Normal;
