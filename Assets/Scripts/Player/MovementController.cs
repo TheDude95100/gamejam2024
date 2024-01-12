@@ -11,6 +11,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float velPower = 1.2f;
     [SerializeField] private float friction = 0.7f;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject body;
 
     [Header("JUMP")]
     [SerializeField] private float jumpForce = 5f;
@@ -33,6 +34,8 @@ public class MovementController : MonoBehaviour
 
     private bool grounded;
     private bool facingRight;
+
+    private float rotation;
 
     #region Public
 
@@ -119,8 +122,47 @@ public class MovementController : MonoBehaviour
 
         bool hasMovement = (Mathf.Abs(movement.x) > 0.1f) || (Mathf.Abs(movement.y) > 0.1f);
         animator.SetBool("isRunning", hasMovement);
+        RotateBody(inputs.Movement2d.Live);
 
         //Debug.Log(rb.velocity);
+    }
+
+    private void RotateBody(Vector2 direction)
+    {
+        if (direction.y == 1)
+        {
+            rotation = 0f;
+        }
+        else if(direction.x > 0 && direction.y > 0)
+        {
+            rotation = 45f;
+        }
+        else if(direction.x == 1)
+        {
+            rotation = 90f;
+        }
+        else if (direction.x > 0 && direction.y < 0)
+        {
+            rotation = 135f;
+        }
+        else if(direction.y == -1)
+        {
+            rotation = 180f;
+        }
+        else if (direction.x < 0 && direction.y < 0)
+        {
+            rotation = -135f;
+        }
+        else if(direction.x == -1)
+        {
+            rotation = -90f;
+        }
+        else if (direction.x < 0 && direction.y > 0)
+        {
+            rotation = -45f;
+        }
+
+        body.transform.rotation = Quaternion.AngleAxis(rotation, Vector3.up);
     }
 
     // private void HorizontalTransform
