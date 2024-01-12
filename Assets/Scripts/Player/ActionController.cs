@@ -19,10 +19,13 @@ public class ActionController : MonoBehaviour
         idle_anim
     }
 
-    private float comboAttackStart = 0f;
-    [SerializeField] private float comboAttackCompleteStep1 = 0f;
-    [SerializeField] private float comboAttackCompleteStep2 = 0f;
-    [SerializeField] private float comboAttackCompleteStep3 = 0f;
+    private float attack1 = 0f;
+    private bool attack1s1tggl = false;
+    [SerializeField] private float attack1s1time = 0f;
+    private bool attack1s2tggl = false;
+    [SerializeField] private float attack1s2time = 0f;
+    private bool attack1s3tggl = false;
+    [SerializeField] private float attack1s3time = 0f;
 
     private void Update()
     {
@@ -78,6 +81,10 @@ public class ActionController : MonoBehaviour
         {
             whirlwindSound.Stop();
         }
+    }
+
+    private void checkAttack(){
+
     }
 
     public void CheckTrigger()
