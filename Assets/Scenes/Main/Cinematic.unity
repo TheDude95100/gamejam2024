@@ -5133,6 +5133,7 @@ MonoBehaviour:
   SkullFlag: 0
   JergalDialFlag: 0
   CoroutineCalled: 0
+  JergalDialDone: 0
 --- !u!4 &215773880
 Transform:
   m_ObjectHideFlags: 0
@@ -20219,9 +20220,17 @@ MonoBehaviour:
   dialogue:
     nom: Jergal
     phrases:
-    - Ceci est ma premiere phrase
-    - "\xC7a c'est ma deuxieme"
-    - "Et \xE7a, la quatrieme"
+    - 'Je t''ai confie une partie de mon pouvoir
+
+'
+    - Preche ma parole
+    - 'Recolte leurs ames
+
+'
+    - 'Et ainsi je recupererai ma voix
+
+'
+    - Vas ... mon Ombre
 --- !u!114 &715942212
 MonoBehaviour:
   m_ObjectHideFlags: 0
