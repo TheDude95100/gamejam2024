@@ -112,6 +112,11 @@ public class AttackModule : MonoBehaviour
     void Attack()
     {
         Debug.Log("Attacking fase");
+        // Face the player
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0f;
+        transform.rotation = Quaternion.LookRotation(direction);
+
         enemyBase.SetAttacking();
     }
 

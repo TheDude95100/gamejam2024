@@ -58,7 +58,7 @@ public class ActionController : MonoBehaviour
         }
         if (inputs.Action2.OnDown)
         {
-            //heavyAttackSound.Play();
+            heavyAttackSound.Play();
             animator.SetTrigger("doHeavyAttack");
         }
         if (inputs.Action3.OnDown)
