@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4805302575495722801}
   - component: {fileID: 2776162142844221509}
+  - component: {fileID: 8569490922735329870}
   m_Layer: 5
   m_Name: Orb (2)
   m_TagString: Untagged
@@ -27,8 +28,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.5, z: -383.81}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2714867724869582575}
   - {fileID: 3629541955660419298}
@@ -42,6 +43,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2176461148469402213}
   m_CullTransparentMesh: 1
+--- !u!114 &8569490922735329870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176461148469402213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f77a4eda926594fb6ff153433fcd1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats: {fileID: 0}
+  xpLiquid: {fileID: 5457073842105654889}
+  healthLiquid: {fileID: 6456997143114122903}
 --- !u!1 &2839422914141096826
 GameObject:
   m_ObjectHideFlags: 0
