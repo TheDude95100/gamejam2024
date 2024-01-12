@@ -21,11 +21,12 @@ MonoBehaviour:
   castingTime: 1.5
   cooldown: 8
   duration: 100
-  attackRange: 3
+  attackRange: 4
   hasPassiveBonus: 0
   bonusLife: 3
   bonusDamage: 3
   bonusDefense: 3
   bonusAttackSpeed: 3
+  bonusDuration: 0.25
   bonusMovementSpeed: 3
-  bonusExperience: 3
+  bonusExperienceGain: 3

@@ -20,5 +20,4 @@ MonoBehaviour:
   minRandomRadiusAvoidanceRange: 0.5
   maxRandomRadiusAvoidanceRange: 0.5
   targetSurrounding: 1
-  damage: 5
   visionRange: 10
