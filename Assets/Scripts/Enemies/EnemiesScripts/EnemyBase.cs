@@ -73,6 +73,7 @@ public class EnemyBase : MonoBehaviour
         Debug.Log("Resetting all");
         animator.SetBool("IsRunning", false);
         animator.SetBool("IsAttacking", false);
+        animator.SetBool("IsAttackSpe", false);
     }
 
     public void SetDeath()
