@@ -109,17 +109,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 22b9a00d13e695549953d6322e393916,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.149
+      value: -5.5328774
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22b9a00d13e695549953d6322e393916,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.35
+      value: -1.3132873
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22b9a00d13e695549953d6322e393916,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.14
+      value: 7.3916035
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 22b9a00d13e695549953d6322e393916,
         type: 3}
@@ -258,7 +258,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.0010434014
-  m_BaseOffset: -0.03
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &6133854433843995519
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9dbbb650d95ece45b1010ca0e524859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger_distance: 1
+  trigger_distance: 2
   dialogueBox: {fileID: 0}
   kronkCameraPos: {fileID: 0}
 --- !u!114 &445665675300696360
@@ -327,12 +327,12 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.005
-  m_Center: {x: 0.0002, y: 0.001, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &3454226048591592837 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22b9a00d13e695549953d6322e393916,

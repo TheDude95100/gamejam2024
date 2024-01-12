@@ -218,6 +218,8 @@ public class MovementModule : MonoBehaviour
             Debug.Log("Agent is not trying to surround target");
             Debug.Log("Agent is moving to " + target.ToString());
 
+            // if agent is not on navmesh, place on navmesh
+            if (!agent.isOnNavMesh) agent.Warp(transform.position);
             agent.SetDestination(target);
             return;
         }
