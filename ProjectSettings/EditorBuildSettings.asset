@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main/FakeLoading.unity
     guid: fa39f5eb46a93fc91af5534216f212c8
+  - enabled: 1
+    path: Assets/Scenes/Main/SceneGameOver.unity
+    guid: 9f2b61f3c991b4f48b4050837af29fb8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ab7a2d84e1878ba42a6404aedcc46471,
       type: 2}
