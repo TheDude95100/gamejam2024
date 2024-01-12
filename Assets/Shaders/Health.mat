@@ -51,10 +51,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Liquid_Level: -0.6
+    - _Liquid_Level: 0.61
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _SideColor: {r: 0.2924528, g: 0.040005345, b: 0.04197759, a: 1}
-    - _TopColor: {r: 0.46698114, g: 0.028635649, b: 0.028635649, a: 1}
+    - _SideColor: {r: 0.28235295, g: 0.040005345, b: 0.04197759, a: 1}
+    - _TopColor: {r: 0.3764706, g: 0.028635649, b: 0.028635649, a: 1}
   m_BuildTextureStacks: []

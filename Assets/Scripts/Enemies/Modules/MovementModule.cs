@@ -182,15 +182,30 @@ public class MovementModule : MonoBehaviour
         }
         else
         {
-            Debug.Log("Agent is in attack range, stopping");
-            target = transform.position;
+            // cast a ray to check for obstacles
+            RaycastHit hit;
 
-            // Face the player
-            Vector3 direction = (player.position - transform.position).normalized;
-            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * enemyData.angularSpeed * 0.1f);
+            if (Physics.Raycast(transform.position, transform.forward, out hit, abilityData.AttackRange))
+            {
+                if (hit.collider.gameObject.tag == "Player")
+                {
+                    Debug.Log("Agent is in attack range, stopping");
+                    target = transform.position;
 
-            state = State.Attacking;
+                    // Face the player
+                    Vector3 sDirection = (player.position - transform.position).normalized;
+                    Quaternion sLookRotation = Quaternion.LookRotation(new Vector3(sDirection.x, 0, sDirection.z));
+                    transform.rotation = Quaternion.Lerp(transform.rotation, sLookRotation, Time.deltaTime * enemyData.angularSpeed * 0.1f);
+
+                    state = State.Attacking;
+                    return;
+                }
+                else
+                {
+                    target = player.position;
+                    state = State.Moving;
+                }
+            }
         }
 
         if (!enemyData.targetSurrounding)
