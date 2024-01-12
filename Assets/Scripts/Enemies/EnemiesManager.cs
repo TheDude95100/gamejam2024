@@ -23,8 +23,10 @@ public class EnemiesManager : MonoBehaviour
 
     public void KillEnemy(EnemyBase enemy)
     {
-        GameObject orb_instantiate = Instantiate(orb,enemy.transform.position, Quaternion.identity);
-        orb_instantiate.SetActive(true);
+        if (orb){
+            GameObject orb_instantiate = Instantiate(orb,enemy.transform.position, Quaternion.identity);
+            orb_instantiate.SetActive(true);
+        }
         enemies.Remove(enemy);
         Destroy(enemy.gameObject);
     }
@@ -58,7 +60,7 @@ public class EnemiesManager : MonoBehaviour
                 return;
             }
         }
-        
+
         foreach (EnemyBase enemy in enemiesGroup)
         {
             enemy.GetComponent<MovementModule>().GroupHasLostPlayer();

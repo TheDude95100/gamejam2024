@@ -12,8 +12,14 @@ public class EnemyBase : MonoBehaviour
     public int abilityIndexVisualizer = 0;
 
     private Animator animator;
-    private int currentHealth;
+    private int currentHealth = 10;
 
+    public void TakeDamage(int hp){
+        currentHealth -= hp;
+        if (currentHealth < 1) {
+            Die();
+        }
+    }
 
     void Start()
     {
