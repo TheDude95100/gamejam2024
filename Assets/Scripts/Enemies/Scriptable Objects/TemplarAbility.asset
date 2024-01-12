@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311477804ce0b4b479bfb653956211be, type: 3}
   m_Name: TemplarAbility
   m_EditorClassIdentifier: 
-  abilityName: Punch
+  abilityName: SwordInYourface
   abilityIcon: {fileID: 0}
-  description: Punch the enemy in the face.
+  description: guess
   isUnlockedAbility: 1
   isActiveAbility: 1
-  baseDamage: 3
+  baseDamage: 5
   castingTime: 0.75
   cooldown: 6
   duration: 100
