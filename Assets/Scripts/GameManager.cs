@@ -50,5 +50,12 @@ public class GameManager : MonoBehaviour
     public static void Scene_Level() {
         SceneManager.LoadScene($"Level{nextLevel}");
     }
-
+    public static void Scene_Boss()
+    {
+        SceneManager.LoadScene("Boss");
+    }
+    public static void Scene_Mort()
+    {
+        SceneManager.LoadScene("Mort");
+    }
 }
