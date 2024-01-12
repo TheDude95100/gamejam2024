@@ -32,7 +32,7 @@ public class UseBook : MonoBehaviour
 
         pos0 = target = transform.localPosition;
         pos1 = new Vector3(-40, -85, 50);
-        SetDestination(pos1, 2);
+        SetDestination(pos1, 1);
 
         activeCanvasGroup = activeCapacity.GetComponent<CanvasGroup>();
         passiveCanvasGroup = passiveCapacity.GetComponent<CanvasGroup>();
@@ -82,12 +82,12 @@ public class UseBook : MonoBehaviour
                 move = false;
                 if (transform.localPosition == pos1)
                 {
-                    SetDestination(pos0, 2);
+                    SetDestination(pos0, 1);
                     fadeIn = true;
                 }
                 else
                 {
-                    SetDestination(pos1, 2);
+                    SetDestination(pos1, 1);
                 }
                 
             }
