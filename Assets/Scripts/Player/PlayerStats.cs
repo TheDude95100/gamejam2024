@@ -49,6 +49,7 @@ public class PlayerStats : MonoBehaviour
     {
         isAlive = true;
         currentLife = maxLife;
+        expNextLevel = 40;
     }
 
     public void AddBasicAttackDamage(float modifier)
@@ -121,7 +122,7 @@ public class PlayerStats : MonoBehaviour
     {
         level += 1;
         availableSkillPoints += 1;
-
+        expNextLevel += 20;
         IncreaseMaxLife(3);
         HealDamage(MaxLife);
     }
