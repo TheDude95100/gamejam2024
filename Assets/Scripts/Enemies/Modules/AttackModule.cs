@@ -7,6 +7,7 @@ public class AttackModule : MonoBehaviour
 {
     private Transform player;
     private float timer;
+    private float timerSpecialAttack;
     private AbilityData[] abilityData;
     private AbilityData currentAbility;
     private EnemyBase enemyBase;
@@ -26,13 +27,14 @@ public class AttackModule : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         timer = 0f;
+        timerSpecialAttack = 0f;
 
         abilityData = GetComponent<EnemyBase>().abilityData;
         state = State.Idle;
 
         enemyBase = GetComponent<EnemyBase>();
 
-        ChooseRandomAbility();
+        currentAbility = abilityData[0];
     }
 
 
@@ -105,7 +107,8 @@ public class AttackModule : MonoBehaviour
     {
         Debug.Log("Casting fase");
         enemyBase.SetIdle();
-        ChooseRandomAbility();
+
+        ChooseAbility();
         // Lock movements
         enemyBase.LockMovements();
     }
@@ -128,10 +131,21 @@ public class AttackModule : MonoBehaviour
         enemyBase.SetIdle();
     }
 
-    void ChooseRandomAbility()
+    void ChooseAbility()
     {
-        int randomIndex = Random.Range(0, abilityData.Length);
-        currentAbility = abilityData[randomIndex];
+        //int randomIndex = Random.Range(0, abilityData.Length);
+        //currentAbility = abilityData[randomIndex];
+
+        if (timerSpecialAttack > 0f)
+        {
+            timerSpecialAttack -= Time.deltaTime;
+            currentAbility = abilityData[0];
+        }
+        else
+        {
+            currentAbility = abilityData[1];
+            timer = currentAbility.Cooldown + abilityDuration + currentAbility.CastingTime;
+        }
     }
 
 
