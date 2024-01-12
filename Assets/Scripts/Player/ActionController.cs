@@ -2,23 +2,25 @@ using UnityEngine;
 
 public class ActionController : MonoBehaviour
 {
-    private PlayerInputs inputs;
     [SerializeField] private AudioSource basicAttackSound;
     [SerializeField] private AudioSource heavyAttackSound;
     [SerializeField] private AudioSource whirlwindSound;
     [SerializeField] private AudioSource conversionSound;
+    [SerializeField] private Animator animator;
+
+    private PlayerInputs inputs;
 
     private void Update()
     {
         if (inputs.Action1.OnDown)
         {
             basicAttackSound.Play();
-            Debug.Log("BasicAttack");
+            animator.SetTrigger("doBasicAttack");
         }
         if (inputs.Action2.OnDown)
         {
-            heavyAttackSound.Play();
-            Debug.Log("HeavyStrike");
+            //heavyAttackSound.Play();
+            animator.SetTrigger("doHeavyAttack");
         }
         if (inputs.Action3.OnDown)
         {   
@@ -27,8 +29,8 @@ public class ActionController : MonoBehaviour
         }
         if (inputs.Action4.OnDown)
         {
-            conversionSound.Play();
-            Debug.Log("Conversion");
+            //conversionSound.Play();
+            animator.SetTrigger("doConversion");
         }
         if (inputs.Action3.OnUp)
         {   
