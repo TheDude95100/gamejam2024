@@ -9,6 +9,7 @@ public class ActionController : MonoBehaviour
     [SerializeField] private Animator animator;
 
     private PlayerInputs inputs;
+    public bool disabledClips = false;
 
     private enum ClipAnims
     {
@@ -25,6 +26,8 @@ public class ActionController : MonoBehaviour
 
     private void Update()
     {
+        if (disabledClips) return;
+
         string currentAnimName = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
         ClipAnims activeAnim;
         switch (currentAnimName)

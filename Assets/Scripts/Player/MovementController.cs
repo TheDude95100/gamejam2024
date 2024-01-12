@@ -225,6 +225,11 @@ public class MovementController : MonoBehaviour
         rb.velocity = Vector3.zero;
     }
 
+    public void ResetAnimatorMovement()
+    {
+        animator.SetBool("isRunning", false);
+    }
+
 }
 
 public enum FreezePositionAxis { X, Z }
