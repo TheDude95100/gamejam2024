@@ -14,17 +14,19 @@ public class EnemyBase : MonoBehaviour
     private Animator animator;
     private int currentHealth;
 
+    public GameObject orb;
+
 
     void Start()
     {
         EnemiesManager.Instance.AddEnemy(this);
+
 
         if (groupID == -1)
         {
             int randomGroupID = Random.Range(100, 10000000);
             groupID = randomGroupID; // good enough
         }
-
         animator = GetComponent<Animator>();
         currentHealth = enemyData.health;
     }
