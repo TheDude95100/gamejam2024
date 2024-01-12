@@ -236,11 +236,11 @@ MonoBehaviour:
   showBuy: {fileID: 0}
   nextCapacity: []
   lockCapacity: {fileID: 0}
-  coutSkillPoint: 0
+  coutSkillPoint: 1
   silverFrame: {fileID: 21300000, guid: 4de543d1431bba7468135b10971f1732, type: 3}
   goldFrame: {fileID: 21300000, guid: 6c314267bc52b8d46a73b9ce94895730, type: 3}
   logo: {fileID: 0}
-  playerManager: {fileID: 0}
+  playerStats: {fileID: 0}
   dataCapacity: {fileID: 0}
 --- !u!114 &2343310430476384179
 MonoBehaviour:

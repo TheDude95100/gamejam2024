@@ -28,7 +28,7 @@ public class CapacityButton : MonoBehaviour
 
     [SerializeField] private Sprite logo;
 
-    [SerializeField] private PlayerManager playerManager;
+    [SerializeField] private PlayerStats playerStats;
     [SerializeField] private AbilityData dataCapacity;
 
     private Color32 backgroundColorNotLearn = new Color32(120, 29, 29, 255);
@@ -65,18 +65,25 @@ public class CapacityButton : MonoBehaviour
                 {
                     lockCapacity.GetComponent<CapacityButton>().Lock();
                 }
-                /**
+                
                 switch (indexStat)
                 {
-                    case 0: playerManager.SetAttaqueLegere(value + dataCapacity.BaseDamage);break;
-                    case 1: playerManager.SetAttaqueLourde(value + dataCapacity.BaseDamage); break;
-                    case 2: playerManager.SetTournade(value + dataCapacity.BaseDamage); break;
-                    case 3: playerManager.SetFrenesie(value + dataCapacity.BonusAttackSpeed); break;
-                    case 4: playerManager.SetVie(value + dataCapacity.BonusLife); break;
-                    case 5: playerManager.SetVitesse(value + dataCapacity.BonusMovementSpeed); break;
-                    case 6: playerManager.SetDegat(value + dataCapacity.BonusDamage); break;
-                    case 7: playerManager.SetArmure(value + dataCapacity.BonusDefense); break;
-                }**/
+                    case 0: playerStats.AddBasicAttackDamage(dataCapacity.BaseDamage);break;
+                    case 1: playerStats.AddHeavyStrikeDamage(dataCapacity.BaseDamage); break;
+                    case 2: playerStats.AddWhirlwindDamage( dataCapacity.BaseDamage); break;
+                    case 3: playerStats.AddBonusAttackSpeed(dataCapacity.BonusAttackSpeed); break;
+                    case 4: playerStats.IncreaseMaxLife(dataCapacity.BonusLife); break;
+                    case 5: playerStats.AddBonusMovementSpeed(dataCapacity.BonusMovementSpeed); break;
+                    case 6:
+                        {
+                            playerStats.AddBasicAttackDamage(dataCapacity.BonusDamage);
+                            playerStats.AddHeavyStrikeDamage(dataCapacity.BonusDamage);
+                            playerStats.AddWhirlwindDamage(dataCapacity.BonusDamage);
+                            break;
+                        }  
+                    case 7: playerStats.AddDefense(dataCapacity.BonusDefense); break;
+                }
+
             }
         }
     }
