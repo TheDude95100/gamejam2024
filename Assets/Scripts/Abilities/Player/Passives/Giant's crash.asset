@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 311477804ce0b4b479bfb653956211be, type: 3}
-  m_Name: AbilityData
+  m_Name: Giant's crash
   m_EditorClassIdentifier: 
-  abilityName: Punch
-  abilityIcon: {fileID: 0}
+  abilityName: Giant's Crash
+  abilityIcon: {fileID: 459078403, guid: 501a137aad1f0e94c8a42f02faaac968, type: 3}
   description: Punch the enemy in the face.
   isUnlockedAbility: 0
   isActiveAbility: 0
-  baseDamage: 3
-  castingTime: 0.75
-  cooldown: 6
+  baseDamage: 4
+  castingTime: 0
+  cooldown: 0
   duration: 100
-  attackRange: 3
+  attackRange: 0
   hasPassiveBonus: 1
   bonusLife: 0
-  bonusDamage: 0
+  bonusDamage: 4
   bonusDefense: 0
   bonusAttackSpeed: 0
   bonusDuration: 0
