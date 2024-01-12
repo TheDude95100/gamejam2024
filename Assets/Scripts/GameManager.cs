@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
     }
 
     public static int nextLevel = 1;
-    public static int bossLevel = 2;
 
     public static void Scene_Menu() {
         SceneManager.LoadScene("MenuPricipal");
@@ -53,6 +52,10 @@ public class GameManager : MonoBehaviour
     }
     public static void Scene_Boss()
     {
-        SceneManager.LoadScene($"Level{bossLevel}");
+        SceneManager.LoadScene("Boss");
+    }
+    public static void Scene_Mort()
+    {
+        SceneManager.LoadScene("Mort");
     }
 }
