@@ -14,8 +14,6 @@ public class EnemyBase : MonoBehaviour
     private Animator animator;
     private int currentHealth;
 
-    public GameObject orb;
-
 
     void Start()
     {
