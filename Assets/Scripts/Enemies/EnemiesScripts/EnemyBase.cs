@@ -43,29 +43,34 @@ public class EnemyBase : MonoBehaviour
 
     public void SetRunning()
     {
+        if (animator == null) return;
         ResetAll();
         animator.SetBool("IsRunning", true);
     }
 
     public void SetAttacking()
     {
+        if (animator == null) return;
         ResetAll();
         animator.SetBool("IsAttacking", true);
     }
 
     public void SetIdle()
     {
+        if (animator == null) return;
         ResetAll();
     }
 
     void ResetAll()
     {
+        Debug.Log("Resetting all");
         animator.SetBool("IsRunning", false);
         animator.SetBool("IsAttacking", false);
     }
 
     public void SetDeath()
     {
+        if (animator == null) return;
         animator.SetTrigger("Death");
     }
 
