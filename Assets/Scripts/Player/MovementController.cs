@@ -10,6 +10,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float decceleration = 7f;
     [SerializeField] private float velPower = 1.2f;
     [SerializeField] private float friction = 0.7f;
+    [SerializeField] private Animator animator;
 
     [Header("JUMP")]
     [SerializeField] private float jumpForce = 5f;
@@ -116,7 +117,10 @@ public class MovementController : MonoBehaviour
 
         rb.AddForce(new Vector3(movement.x, 0, movement.y));
 
-        // Debug.Log(rb.velocity);
+        bool hasMovement = (Mathf.Abs(movement.x) > 0.1f) || (Mathf.Abs(movement.y) > 0.1f);
+        animator.SetBool("isRunning", hasMovement);
+
+        //Debug.Log(rb.velocity);
     }
 
     // private void HorizontalTransform
