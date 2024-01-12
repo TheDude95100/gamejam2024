@@ -31,7 +31,7 @@ public class UseBook : MonoBehaviour
         m_Animator = GetComponent<Animator>();  
 
         pos0 = target = transform.localPosition;
-        pos1 = new Vector3(-40, -85, 50);
+        pos1 = new Vector3(-40, -85, -50);
         SetDestination(pos1, 1);
 
         activeCanvasGroup = activeCapacity.GetComponent<CanvasGroup>();
