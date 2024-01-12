@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 [RequireComponent(typeof(EnemyBase))]
 public class MovementModule : MonoBehaviour
@@ -55,7 +54,7 @@ public class MovementModule : MonoBehaviour
         agent.stoppingDistance = enemyData.stoppingDistance;
 
         selfObstacle = GetComponent<NavMeshObstacle>();
-        if (selfObstacle == null && enemyData.damage > 1 && enemyData.targetSurrounding)
+        if (selfObstacle == null && abilityData.BaseDamage > 1 && enemyData.targetSurrounding)
         {
             Debug.LogError("Enemy " + gameObject.name + " has no NavMeshObstacle component despite having damage > 0 and targetSurrounding = true");
         }
@@ -105,7 +104,7 @@ public class MovementModule : MonoBehaviour
 
         if (!groupHasDetectedPlayer) return; // Player detected area
 
-        if (enemyData.damage > 0)
+        if (abilityData.BaseDamage > 0)
         {
             HostileMovement();
         }
@@ -142,7 +141,7 @@ public class MovementModule : MonoBehaviour
 
         agent.enabled = true;
 
-        if (enemyData.damage > 0) agent.SetDestination(lastSeen);
+        if (abilityData.BaseDamage > 0) agent.SetDestination(lastSeen);
 
         state = State.Moving;
     }
@@ -185,6 +184,8 @@ public class MovementModule : MonoBehaviour
 
             state = State.Moving;
             enemyBase.SetRunning();
+
+            agent.SetDestination(target);
         }
         else
         {
@@ -208,13 +209,16 @@ public class MovementModule : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, sLookRotation, Time.deltaTime * enemyData.angularSpeed * 0.1f);
 
                 state = State.Attacking;
-
-                enemyBase.SetAttacking();
             }
         }
 
         if (!enemyData.targetSurrounding)
         {
+            Debug.Log("Agent is not trying to surround target");
+            Debug.Log("Agent is moving to " + target.ToString());
+
+            // if agent is not on navmesh, place on navmesh
+            if (!agent.isOnNavMesh) agent.Warp(transform.position);
             agent.SetDestination(target);
             return;
         }

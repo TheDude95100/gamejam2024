@@ -8,6 +8,7 @@ TagManager:
   - World
   - Wall
   - Floor
+  - DialogueManager
   layers:
   - Default
   - TransparentFX

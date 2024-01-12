@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     {
         flag = false;
         phrases = new Queue<string>();
-        animator.SetBool("IsDialogueFinished", false);
+        if (animator != null) animator.SetBool("IsDialogueFinished", false);
         nameText.text = dialogue.nom;
 
         phrases.Clear();
@@ -46,12 +46,12 @@ public class DialogueManager : MonoBehaviour
         foreach (char lettre in phrase.ToCharArray())
         {
             dialogueText.text += lettre;
-            yield return null;
+            yield return new WaitForSeconds(0.03f);
         }
     }
     public void EndDialogue()
     {
-        animator.SetBool("IsDialogueFinished",true);
+        if (animator != null) animator.SetBool("IsDialogueFinished",true);
         flag = true;
     }
 

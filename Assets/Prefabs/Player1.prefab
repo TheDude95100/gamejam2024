@@ -542,6 +542,7 @@ GameObject:
   - component: {fileID: 1826242243380023652}
   - component: {fileID: 5885474491903661576}
   - component: {fileID: 9150862509022366995}
+  - component: {fileID: 7667584773476613813}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -619,6 +620,8 @@ MonoBehaviour:
   decceleration: 4
   velPower: 1.2
   friction: 0.7
+  animator: {fileID: 3668407514682798075}
+  body: {fileID: 8017305958965784379}
   jumpForce: 5
   jumpCutMultiplier: 0.5
   jumpCoyoteFrame: 10
@@ -710,6 +713,27 @@ MonoBehaviour:
   whirlwindSound: {fileID: 1569799166338938828}
   conversionSound: {fileID: 0}
   animator: {fileID: 3668407514682798075}
+  disabledClips: 0
+  comboAttackCompleteStep1: 0
+  comboAttackCompleteStep2: 0
+  comboAttackCompleteStep3: 0
+--- !u!114 &7667584773476613813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7943036737201366809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bce92b0dace5a499b534c9a5fb52db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLife: 20
+  defense: 0
+  basicAttackDamage: 2
+  heavyStrikeDamage: 3
+  whirlwindDamage: 2
 --- !u!1 &8547121658833597846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,6 +2291,12 @@ Animator:
 --- !u!4 &7208259582931989889 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7a386157598fa534cb02bf643f875f45,
+    type: 3}
+  m_PrefabInstance: {fileID: 7170390980272198250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8017305958965784379 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a386157598fa534cb02bf643f875f45,
     type: 3}
   m_PrefabInstance: {fileID: 7170390980272198250}
   m_PrefabAsset: {fileID: 0}

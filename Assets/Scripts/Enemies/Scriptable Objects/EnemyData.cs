@@ -28,17 +28,7 @@ public class EnemyData : ScriptableObject
     public bool targetSurrounding = true;
 
 
-
-
-    [Header("Damage")]
-    [Range(0, 100)]
-    public int damage = 1;
-
-
     [Header("VisionRange / Blue Sphere")]
     [Range(1, 100)]
     public int visionRange = 1;
-
-    [Header("Additional Parameters")]
-    bool roaming = false;
 }

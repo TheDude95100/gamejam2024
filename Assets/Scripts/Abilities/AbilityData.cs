@@ -47,7 +47,7 @@ public class AbilityData : ScriptableObject
     private float bonusDamage = 3f;
     [SerializeField]
     [Range(0f, 100f)]
-    private float bonusDefense = 3f;
+    private int bonusDefense = 3;
     [SerializeField]
     [Range(0f, 1f)]
     private float bonusAttackSpeed = 0.25f;
@@ -77,7 +77,7 @@ public class AbilityData : ScriptableObject
 
     public float BonusLife => bonusLife;
     public float BonusDamage => bonusDamage;
-    public float BonusDefense => bonusDefense;
+    public int BonusDefense => bonusDefense;
     public float BonusAttackSpeed => bonusAttackSpeed;
     public float BonusDuration => bonusDuration;
     public float BonusMovementSpeed => bonusMovementSpeed;

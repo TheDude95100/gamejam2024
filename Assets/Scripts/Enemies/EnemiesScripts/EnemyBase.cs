@@ -19,12 +19,12 @@ public class EnemyBase : MonoBehaviour
     {
         EnemiesManager.Instance.AddEnemy(this);
 
+
         if (groupID == -1)
         {
             int randomGroupID = Random.Range(100, 10000000);
             groupID = randomGroupID; // good enough
         }
-
         animator = GetComponent<Animator>();
         currentHealth = enemyData.health;
     }
@@ -43,18 +43,28 @@ public class EnemyBase : MonoBehaviour
 
     public void SetRunning()
     {
+        if (animator == null) return;
         ResetAll();
         animator.SetBool("IsRunning", true);
     }
 
     public void SetAttacking()
     {
+        if (animator == null) return;
         ResetAll();
         animator.SetBool("IsAttacking", true);
     }
 
+    public void SetAttackSpe()
+    {
+        if (animator == null) return;
+        ResetAll();
+        animator.SetBool("IsAttackSpe", true);
+    }
+
     public void SetIdle()
     {
+        if (animator == null) return;
         ResetAll();
     }
 
@@ -63,10 +73,12 @@ public class EnemyBase : MonoBehaviour
         Debug.Log("Resetting all");
         animator.SetBool("IsRunning", false);
         animator.SetBool("IsAttacking", false);
+        animator.SetBool("IsAttackSpe", false);
     }
 
     public void SetDeath()
     {
+        if (animator == null) return;
         animator.SetTrigger("Death");
     }
 
