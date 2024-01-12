@@ -42,10 +42,11 @@ public class AttackModule : MonoBehaviour
     {
         // TODO If player is not dead return
 
+
         timer -= Time.deltaTime;
         timerSpecialAttack -= Time.deltaTime;
         // cooldown is currentAbility.Cooldown in secondes
-        if (timer > currentAbility.Cooldown * 60f + abilityDuration)
+        if (timer > currentAbility.Cooldown + abilityDuration)
         {
             state = State.Casting;
         }
@@ -83,7 +84,7 @@ public class AttackModule : MonoBehaviour
 
         previousState = state;
 
-        if (state != State.Idle)
+        if (state != State.Idle && state != State.Attacking)
         {
             return;
         }
@@ -102,13 +103,14 @@ public class AttackModule : MonoBehaviour
     void Idle()
     {
         Debug.Log("Idle fase");
+        enemyBase.UnlockMovements();
         enemyBase.SetIdle();
     }
 
     void Caste()
     {
         Debug.Log("Casting fase");
-        enemyBase.SetIdle();
+        //enemyBase.SetIdle();
 
         ChooseAbility();
         // Lock movements
@@ -135,7 +137,6 @@ public class AttackModule : MonoBehaviour
         else
         {
             enemyBase.SetAttackSpe();
-            timerSpecialAttack = currentAbility.Cooldown + abilityDuration + currentAbility.CastingTime;
         }
     }
 
@@ -143,15 +144,16 @@ public class AttackModule : MonoBehaviour
     {
         Debug.Log("Cooldown fase");
         enemyBase.UnlockMovements();
-        enemyBase.SetIdle();
+        //enemyBase.SetIdle();
     }
 
     void ChooseAbility()
     {
         Debug.Log("ChooseAbility");
-        //int randomIndex = Random.Range(0, abilityData.Length);
-        //currentAbility = abilityData[randomIndex];
+        int randomIndex = Random.Range(0, abilityData.Length);
+        currentAbility = abilityData[randomIndex];
 
+        /*
         if (abilityData.Length == 1)
         {
             currentAbility = abilityData[0];
@@ -167,6 +169,7 @@ public class AttackModule : MonoBehaviour
         { 
             currentAbility = abilityData[0];
         }
+        */
     }
 
 
