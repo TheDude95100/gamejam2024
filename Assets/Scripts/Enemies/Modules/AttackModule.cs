@@ -43,6 +43,7 @@ public class AttackModule : MonoBehaviour
         // TODO If player is not dead return
 
         timer -= Time.deltaTime;
+        timerSpecialAttack -= Time.deltaTime;
         if (timer > currentAbility.Cooldown + abilityDuration)
         {
             state = State.Casting;
@@ -121,7 +122,15 @@ public class AttackModule : MonoBehaviour
         direction.y = 0f;
         transform.rotation = Quaternion.LookRotation(direction);
 
-        enemyBase.SetAttacking();
+        if (currentAbility == abilityData[0])
+        {
+            enemyBase.SetAttacking();
+        }
+        else
+        {
+            enemyBase.SetAttackSpe();
+            timerSpecialAttack = currentAbility.Cooldown + abilityDuration + currentAbility.CastingTime;
+        }
     }
 
     void Cooldown()
@@ -136,15 +145,19 @@ public class AttackModule : MonoBehaviour
         //int randomIndex = Random.Range(0, abilityData.Length);
         //currentAbility = abilityData[randomIndex];
 
+        if (abilityData.Length == 1)
+        {
+            currentAbility = abilityData[0];
+            return;
+        }   
+
         if (timerSpecialAttack > 0f)
         {
-            timerSpecialAttack -= Time.deltaTime;
             currentAbility = abilityData[0];
         }
         else
-        {
+        { 
             currentAbility = abilityData[1];
-            timer = currentAbility.Cooldown + abilityDuration + currentAbility.CastingTime;
         }
     }
 

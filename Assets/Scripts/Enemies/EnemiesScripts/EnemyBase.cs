@@ -55,6 +55,13 @@ public class EnemyBase : MonoBehaviour
         animator.SetBool("IsAttacking", true);
     }
 
+    public void SetAttackSpe()
+    {
+        if (animator == null) return;
+        ResetAll();
+        animator.SetBool("IsAttackSpe", true);
+    }
+
     public void SetIdle()
     {
         if (animator == null) return;
