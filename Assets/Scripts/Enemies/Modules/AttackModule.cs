@@ -10,6 +10,7 @@ public class AttackModule : MonoBehaviour
     private AbilityData[] abilityData;
     private AbilityData currentAbility;
     private EnemyBase enemyBase;
+    private float abilityDuration = 2f;
 
     private enum State
     {
@@ -40,11 +41,11 @@ public class AttackModule : MonoBehaviour
         // TODO If player is not dead return
 
         timer -= Time.deltaTime;
-        if (timer > currentAbility.Cooldown + currentAbility.Duration)
+        if (timer > currentAbility.Cooldown + abilityDuration)
         {
             state = State.Casting;
         }
-        else if (timer > currentAbility.Duration)
+        else if (timer > abilityDuration)
         {
             state = State.Attacking;
         }
@@ -90,7 +91,7 @@ public class AttackModule : MonoBehaviour
 
         if (distance <= currentAbility.AttackRange)
         {
-            timer = currentAbility.Cooldown + currentAbility.Duration + currentAbility.CastingTime;
+            timer = currentAbility.Cooldown + abilityDuration + currentAbility.CastingTime;
         }
     }
 
