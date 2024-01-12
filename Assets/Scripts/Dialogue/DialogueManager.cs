@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     {
         flag = false;
         phrases = new Queue<string>();
-        animator.SetBool("IsDialogueFinished", false);
+        if (animator != null) animator.SetBool("IsDialogueFinished", false);
         nameText.text = dialogue.nom;
 
         phrases.Clear();
@@ -51,7 +51,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void EndDialogue()
     {
-        animator.SetBool("IsDialogueFinished",true);
+        if (animator != null) animator.SetBool("IsDialogueFinished",true);
         flag = true;
     }
 
