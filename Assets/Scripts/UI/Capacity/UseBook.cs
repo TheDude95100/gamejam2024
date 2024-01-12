@@ -31,7 +31,7 @@ public class UseBook : MonoBehaviour
         m_Animator = GetComponent<Animator>();  
 
         pos0 = target = transform.localPosition;
-        pos1 = new Vector3(-40, -85, -50);
+        pos1 = new Vector3(200, -250, -330);
         SetDestination(pos1, 1);
 
         activeCanvasGroup = activeCapacity.GetComponent<CanvasGroup>();
@@ -42,7 +42,7 @@ public class UseBook : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.Tab))
         {
             if((state == 0 || state==3) && !move)
             {
