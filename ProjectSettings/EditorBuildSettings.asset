@@ -12,16 +12,19 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/MenuPricipal.unity
     guid: 264f1734e1c65944c8a9fd45e1f5bc9c
   - enabled: 1
-    path: Assets/Scenes/Main/Level1.unity
-    guid: cbfdc45a3ac82c644a1517cc385c8a1a
-  - enabled: 1
     path: Assets/Scenes/Main/Cinematic.unity
     guid: 9536e6d6c78e04f49bdc1a78129c1d5c
   - enabled: 1
     path: Assets/Scenes/Main/FakeLoading.unity
     guid: fa39f5eb46a93fc91af5534216f212c8
   - enabled: 1
-    path: Assets/Scenes/Main/SceneGameOver.unity
+    path: Assets/Scenes/Main/Level1.unity
+    guid: cbfdc45a3ac82c644a1517cc385c8a1a
+  - enabled: 1
+    path: Assets/Scenes/Main/Boss.unity
+    guid: b14acca518181654a972a6c452006f73
+  - enabled: 1
+    path: Assets/Scenes/Main/Mort.unity
     guid: 9f2b61f3c991b4f48b4050837af29fb8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ab7a2d84e1878ba42a6404aedcc46471,
