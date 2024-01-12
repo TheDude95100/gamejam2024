@@ -9,6 +9,7 @@ public class AttackModule : MonoBehaviour
     private float timer;
     private AbilityData[] abilityData;
     private AbilityData currentAbility;
+    private EnemyBase enemyBase;
 
     private enum State
     {
@@ -27,14 +28,16 @@ public class AttackModule : MonoBehaviour
 
         abilityData = GetComponent<EnemyBase>().abilityData;
         state = State.Idle;
+
+        enemyBase = GetComponent<EnemyBase>();
+
+        ChooseRandomAbility();
     }
 
 
     void Update()
     {
         // TODO If player is not dead return
-
-        ChooseRandomAbility();
 
         timer -= Time.deltaTime;
         if (timer > currentAbility.Cooldown + currentAbility.Duration)
@@ -93,22 +96,30 @@ public class AttackModule : MonoBehaviour
 
     void Idle()
     {
-        // TODO do stuff here
+        Debug.Log("Idle fase");
+        enemyBase.SetIdle();
     }
 
     void Caste()
     {
-        // TODO do stuff here
+        Debug.Log("Casting fase");
+        enemyBase.SetIdle();
+        ChooseRandomAbility();
+        // Lock movements
+        enemyBase.LockMovements();
     }
 
     void Attack()
     {
-        // TODO do stuff here
+        Debug.Log("Attacking fase");
+        enemyBase.SetAttacking();
     }
 
     void Cooldown()
     {
-        // TODO do stuff here
+        Debug.Log("Cooldown fase");
+        enemyBase.UnlockMovements();
+        enemyBase.SetIdle();
     }
 
     void ChooseRandomAbility()

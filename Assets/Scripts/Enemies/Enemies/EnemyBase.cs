@@ -11,6 +11,9 @@ public class EnemyBase : MonoBehaviour
     public AbilityData[] abilityData;
     public int abilityIndexVisualizer = 0;
 
+    private Animator animator;
+    private int currentHealth;
+
 
     void Start()
     {
@@ -21,6 +24,9 @@ public class EnemyBase : MonoBehaviour
             int randomGroupID = Random.Range(100, 10000000);
             groupID = randomGroupID; // good enough
         }
+
+        animator = GetComponent<Animator>();
+        currentHealth = enemyData.health;
     }
 
 
@@ -35,6 +41,34 @@ public class EnemyBase : MonoBehaviour
         // TODO do cool stuff here
     }
 
+    public void SetRunning()
+    {
+        ResetAll();
+        animator.SetBool("IsRunning", true);
+    }
+
+    public void SetAttacking()
+    {
+        ResetAll();
+        animator.SetBool("IsAttacking", true);
+    }
+
+    public void SetIdle()
+    {
+        ResetAll();
+    }
+
+    void ResetAll()
+    {
+        animator.SetBool("IsRunning", false);
+        animator.SetBool("IsAttacking", false);
+    }
+
+    public void SetDeath()
+    {
+        animator.SetTrigger("Death");
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
@@ -43,5 +77,15 @@ public class EnemyBase : MonoBehaviour
         if (abilityData.Length == 0 || abilityIndexVisualizer >= abilityData.Length) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, abilityData[abilityIndexVisualizer].AttackRange);
+    }
+
+    internal void LockMovements()
+    {
+        GetComponent<MovementModule>().SetLock(true);
+    }
+
+    internal void UnlockMovements()
+    {
+        GetComponent<MovementModule>().SetLock(false);
     }
 }
