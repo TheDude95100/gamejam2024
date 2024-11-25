@@ -34,6 +34,7 @@ public class ObjectColliderDetector : MonoBehaviour
         // Debug.Log($"ColliderDetector OnCollisionExit {col.gameObject.name}");
         Remove(col.gameObject);
     }
+    
     private void OnTriggerEnter(Collider col)
     {
         // Debug.Log($"ColliderDetector OnTriggerEnter {col.gameObject.name}");
@@ -56,6 +57,7 @@ public class ObjectColliderDetector : MonoBehaviour
         // Debug.Log($"ColliderDetector2D OnCollisionExit2D {col.gameObject.name}");
         Remove(col.gameObject);
     }
+    
     private void OnTriggerEnter2D(Collider2D col)
     {
         // Debug.Log($"ColliderDetector2D OnTriggerEnter2D {col.gameObject.name}");
@@ -80,12 +82,25 @@ public class ObjectColliderDetector : MonoBehaviour
     // list sort
     protected void SortListByDistance()
     {
+        List<GameObject> objectsToDel = new();
+        foreach (GameObject obj in objectList) {
+            if (obj == null) {
+                objectsToDel.Add(obj);
+            }
+        }
+        foreach (GameObject objectToDel in objectsToDel) {
+            objectList.Remove(objectToDel);
+        }
         objectList.Sort(SortGameObjectsByDistance);
 
         timeLastSort = Time.time;
     }
     protected int SortGameObjectsByDistance(GameObject comp1, GameObject comp2)
     {
+
+        if (comp1 == null) return 1;
+        if (comp2 == null) return -1;
+
         float distanceComp1 = Vector3.Distance(transform.position, comp1.transform.position);
         float distanceComp2 = Vector3.Distance(transform.position, comp2.transform.position);
         float distanceDiff = distanceComp1 - distanceComp2;
